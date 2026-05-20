@@ -14,49 +14,79 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #0A0E1A 0%, #1a1a2e 100%);
-            color: #FFFFFF;
-            line-height: 1.8;
-            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
         }
         
-        .container {
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .navbar-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .navbar-links a:hover {
+            color: #3498db;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .content {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(26, 31, 53, 0.8);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 100px 20px 20px;
         }
         
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #007AFF, #8B5CF6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
         
         h2 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #007AFF;
-        }
-        
-        p, li {
-            color: #9CA3AF;
-            margin-bottom: 1rem;
-        }
-        
-        ul {
-            margin-left: 2rem;
+            color: #34495e;
+            margin-top: 30px;
         }
         
         a {
-            color: #007AFF;
+            color: #3498db;
             text-decoration: none;
         }
         
@@ -64,24 +94,18 @@
             text-decoration: underline;
         }
         
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: #007AFF;
-        }
-        
         .contact-box {
-            background: rgba(0, 122, 255, 0.1);
-            border: 1px solid rgba(0, 122, 255, 0.3);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            text-align: center;
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
         }
         
         .contact-box a {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
+            word-break: break-all;
         }
         
         .faq-item {
@@ -90,30 +114,118 @@
         
         .faq-question {
             font-weight: 600;
-            color: #FFFFFF;
+            color: #2c3e50;
             margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .navbar-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .content {
+                padding: 80px 20px 20px;
+            }
+            
+            .contact-box {
+                padding: 0.75rem;
+                margin: 1rem 0;
+            }
+            
+            .contact-box a {
+                font-size: 0.9rem;
+            }
+            
+            footer {
+                padding: 1.5rem 1rem;
+            }
+            
+            .footer-links {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
-        
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Magic Domino™</a>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="navbar-links" id="navbarLinks">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="support.html">Support</a>
+            <a href="mailto:magicdominoapp@gmail.com">Contact</a>
+        </div>
+    </nav>
+
+    <div class="content">
         <h1>Support</h1>
         <p>
             Need help with Magic Domino? We're here to assist you!
         </p>
         
         <div class="contact-box">
-            <p>📧 Contact us at:</p>
-            <a href="mailto:support@magicdominoapp.com">support@magicdominoapp.com</a>
+            <p style="margin-bottom: 0.5rem;">📧 Contact us:</p>
+            <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a>
         </div>
         
         <h2>Frequently Asked Questions</h2>
         
         <div class="faq-item">
             <p class="faq-question">Q: How does AI score counting work?</p>
-            <p>A: Simply take a photo of your dominoes using the camera icon in the app. Our AI will automatically detect and count the pips. Make sure the dominoes are clearly visible and well-lit for best results.</p>
+            <p>A: Point your camera at your dominoes using the camera icon in the app. Our AI will automatically detect and count the pips in real-time as the dominoes appear in view. Make sure the dominoes are clearly visible and well-lit for best results.</p>
         </div>
         
         <div class="faq-item">
@@ -123,12 +235,48 @@
         
         <div class="faq-item">
             <p class="faq-question">Q: What does Premium include?</p>
-            <p>A: Premium unlocks unlimited AI counting, ad-free experience, tournament mode, all themes and animations, iCloud sync, and game sharing. Try it free for 14 days!</p>
+            <p>A: Premium unlocks unlimited AI counting, ad-free experience, tournament mode, all themes and animations, iCloud sync, game sharing, widgets & live activity (iOS 26+), and custom scoreboard backgrounds (iOS 26+). Recurring subscriptions (Monthly, 6-Month, Annual) include a 14-day free trial. Lifetime Access requires immediate one-time payment with no trial.</p>
+        </div>
+        
+        <div class="faq-item">
+            <p class="faq-question">Q: Does the 14-day free trial apply to all Premium options?</p>
+            <p>A: No. The 14-day free trial only applies to recurring subscriptions (Monthly, 6-Month, and Annual plans). If you choose Lifetime Access, it's a one-time payment with no trial period, but you get permanent Premium access forever.</p>
+        </div>
+        
+        <div class="faq-item">
+            <p class="faq-question">Q: How do I add widgets to my home screen? (Premium, iOS 26+)</p>
+            <p>A: Long-press on your home screen, tap the "+" button in the top left, search for "Magic Domino", and select the widget size you want. You can add widgets to your home screen or lock screen to see your live scores!</p>
+        </div>
+        
+        <div class="faq-item">
+            <p class="faq-question">Q: What is Live Activity? (Premium, iOS 26+)</p>
+            <p>A: Live Activity displays your current game score in real-time on your lock screen and Dynamic Island. When you start a new game with Premium, your live score automatically appears! It updates as you add points during the game.</p>
+        </div>
+        
+        <div class="faq-item">
+            <p class="faq-question">Q: How do I add Quick Points from my Lock Screen or Dynamic Island? (Premium, iOS 26+)</p>
+            <p>A: With Premium and iOS 26+, when you have an active game, you'll see Live Activity on your Lock Screen and Dynamic Island. Simply tap the Quick Points button to add points without opening the app. You can also undo your last score directly from there!</p>
+        </div>
+        
+        <div class="faq-item">
+            <p class="faq-question">Q: How do I customize my scoreboard background? (Premium, iOS 26+)</p>
+            <p>A: Go to Settings → Scoreboard Background → Select Photo. Choose a photo from your library, adjust the opacity and blur to your liking, and save! Your photo is stored locally on your device and never uploaded to our servers.</p>
+        </div>
+        
+        <div class="faq-item">
+            <p class="faq-question">Q: Why can't I see the custom background or widget features?</p>
+            <p>A: These are Premium features with specific iOS requirements:
+                <ul style="margin-top: 0.5rem;">
+                    <li>Widgets & Live Activity require iOS 26 or later and a Premium subscription</li>
+                    <li>Custom Backgrounds require iOS 26 or later and a Premium subscription</li>
+                </ul>
+                Make sure your device meets these requirements and that you have an active Premium subscription.
+            </p>
         </div>
         
         <div class="faq-item">
             <p class="faq-question">Q: How do I restore my Premium purchase?</p>
-            <p>A: Go to Settings → tap "Restore Purchase" at the top. Your purchase is tied to your Apple ID and will be restored automatically.</p>
+            <p>A: Go to Settings → tap "Upgrade" → On the paywall screen, tap "Restore Purchase" at the top right. Your purchase is tied to your Apple ID and will be restored automatically.</p>
         </div>
         
         <div class="faq-item">
@@ -155,23 +303,28 @@
             <p class="faq-question">Q: The AI isn't counting correctly. What should I do?</p>
             <p>A: Make sure your dominoes are:
                 <ul style="margin-top: 0.5rem;">
-                    <li>Well-lit and clearly visible</li>
+                    <li>Well-lit and clearly visible in the camera view</li>
                     <li>Not overlapping each other</li>
                     <li>Against a contrasting background</li>
-                    <li>In focus and not blurry</li>
+                    <li>Held steady for the AI to detect them</li>
                 </ul>
                 If issues persist, you can always manually enter the score.
             </p>
         </div>
         
+        <div class="faq-item">
+            <p class="faq-question">Q: Is my photo safe when I use a custom background?</p>
+            <p>A: Absolutely! When you select a photo for your scoreboard background, it's compressed and stored locally on your device only. Your photos are never uploaded to our servers or shared with anyone. You have complete control and can remove the custom background anytime.</p>
+        </div>
+        
         <h2>Feature Requests & Feedback</h2>
         <p>
-            We love hearing from our users! If you have suggestions for new features or improvements, please email us at <a href="mailto:support@magicdominoapp.com">support@magicdominoapp.com</a>
+            We love hearing from our users! If you have suggestions for new features or improvements, please email us at <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a>
         </p>
         
         <h2>Report a Bug</h2>
         <p>
-            Found a bug? Please let us know by emailing <a href="mailto:support@magicdominoapp.com">support@magicdominoapp.com</a> with:
+            Found a bug? Please let us know by emailing <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a> with:
         </p>
         <ul>
             <li>Description of the issue</li>
@@ -185,5 +338,25 @@
             We typically respond to all support requests within 24-48 hours. Thank you for your patience!
         </p>
     </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="support.html">Support</a>
+            <a href="mailto:magicdominoapp@gmail.com">Contact</a>
+        </div>
+        <p class="copyright">
+            © 2025 Magic Domino™. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navbarLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
