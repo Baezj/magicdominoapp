@@ -6,12 +6,6 @@
     <title>Magic Domino™ - The Ultimate Dominoes Score Keeper</title>
     <meta name="description" content="Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode. Available on iPhone and iPad.">
     
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Magic Domino™ - The Ultimate Dominoes Score Keeper">
-    <meta property="og:description" content="Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://magicdominoapp.com">
-    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="app-icon.png">
     
@@ -22,24 +16,54 @@
             box-sizing: border-box;
         }
         
-        :root {
-            --primary-blue: #007AFF;
-            --primary-purple: #8B5CF6;
-            --dark-bg: #0A0E1A;
-            --card-bg: #1A1F35;
-            --text-primary: #FFFFFF;
-            --text-secondary: #9CA3AF;
-        }
-        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 100%);
-            color: var(--text-primary);
+            background: #FFFFFF;
+            color: #333;
             line-height: 1.6;
             overflow-x: hidden;
         }
         
-        /* Hero Section */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .navbar-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .navbar-links a:hover {
+            color: #3498db;
+        }
+        
         .hero {
             min-height: 100vh;
             display: flex;
@@ -48,35 +72,12 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent);
-            top: -250px;
-            right: -250px;
-            border-radius: 50%;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.2), transparent);
-            bottom: -250px;
-            left: -250px;
-            border-radius: 50%;
+            padding-top: 5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
         .hero-content {
             max-width: 800px;
-            z-index: 1;
         }
         
         .logo {
@@ -93,15 +94,12 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #2c3e50;
         }
         
         .tagline {
             font-size: 1.5rem;
-            color: var(--text-secondary);
+            color: #666;
             margin-bottom: 2rem;
         }
         
@@ -113,35 +111,32 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: white;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            background: linear-gradient(135deg, #3498db, #8B5CF6);
             border: none;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
         }
         
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4);
         }
         
-        .app-store-badge {
-            margin-top: 1rem;
-        }
-        
-        /* Features Section */
         .features {
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            background: #FFFFFF;
         }
         
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
+            color: #2c3e50;
         }
         
         .features-grid {
@@ -151,16 +146,16 @@
         }
         
         .feature-card {
-            background: var(--card-bg);
+            background: #f8f9fa;
             padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         .feature-icon {
@@ -171,18 +166,17 @@
         .feature-title {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            color: #2c3e50;
         }
         
         .feature-description {
-            color: var(--text-secondary);
+            color: #666;
             line-height: 1.6;
         }
         
-        /* Premium Section */
         .premium {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(0, 122, 255, 0.1));
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
             text-align: center;
         }
         
@@ -193,7 +187,8 @@
         
         .premium-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            background: linear-gradient(135deg, #3498db, #8B5CF6);
+            color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
@@ -213,13 +208,14 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1.1rem;
+            color: #333;
         }
         
-        /* Footer */
         footer {
             padding: 3rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
         }
         
         .footer-links {
@@ -231,32 +227,61 @@
         }
         
         .footer-links a {
-            color: var(--text-secondary);
+            color: #666;
             text-decoration: none;
             transition: color 0.2s;
         }
         
         .footer-links a:hover {
-            color: var(--primary-blue);
+            color: #3498db;
         }
         
         .copyright {
-            color: var(--text-secondary);
+            color: #999;
             font-size: 0.9rem;
         }
         
-        /* Responsive */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .navbar-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
             h1 {
                 font-size: 2.5rem;
             }
             
             .tagline {
                 font-size: 1.2rem;
-            }
-            
-            .logo {
-                font-size: 3rem;
             }
             
             .section-title {
@@ -270,23 +295,33 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Magic Domino™</a>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="navbar-links" id="navbarLinks">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="support.html">Support</a>
+            <a href="mailto:magicdominoapp@gmail.com">Contact</a>
+        </div>
+    </nav>
+
     <section class="hero">
         <div class="hero-content">
-            <img src="app-icon.png" alt="Magic Domino Icon" class="logo" style="width: 150px; height: 150px; border-radius: 30px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">
+            <img src="app-icon.png" alt="Magic Domino Icon" class="logo" style="width: 150px; height: 150px; border-radius: 30px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);">
             <h1>Magic Domino™</h1>
             <p class="tagline">The Ultimate Dominoes Score Keeper</p>
-            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
                 Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode.
             </p>
-            <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="cta-button">
+            <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055?uo=4" class="cta-button">
                 <span>Download on the</span>
                 <span style="font-size: 1.4rem;">App Store</span>
             </a>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features">
         <h2 class="section-title">Powerful Features</h2>
         <div class="features-grid">
@@ -294,7 +329,7 @@
                 <div class="feature-icon">📸</div>
                 <h3 class="feature-title">AI Score Counting</h3>
                 <p class="feature-description">
-                    Snap a photo of your dominoes and let AI instantly count the score. No more manual counting or disputes!
+                    Point your camera at your dominoes and AI instantly detects and counts the score in real-time. No manual counting or disputes!
                 </p>
             </div>
             
@@ -340,12 +375,11 @@
         </div>
     </section>
 
-    <!-- Premium Section -->
     <section class="premium">
         <div class="premium-content">
             <span class="premium-badge">✨ PREMIUM</span>
             <h2 class="section-title">Unlock the Full Experience</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 1rem;">
                 Try Premium features free for 14 days
             </p>
             <div class="premium-features">
@@ -377,16 +411,24 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-links">
+            <a href="index.html">Home</a>
             <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
             <a href="support.html">Support</a>
-            <a href="mailto:support@magicdominoapp.com">Contact</a>
+            <a href="mailto:magicdominoapp@gmail.com">Contact</a>
         </div>
         <p class="copyright">
             © 2025 Magic Domino™. All rights reserved.
         </p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navbarLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
