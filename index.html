@@ -3,301 +3,689 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Domino™ - The Ultimate Dominoes Score Keeper</title>
+    <title>Magic Domino™ — The Ultimate Dominoes Score Keeper</title>
     <meta name="description" content="Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode. Available on iPhone and iPad.">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="app-icon.png">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ink: #0f1a3a;
+            --ink-soft: #2d3a5f;
+            --cream: #f7f9fc;
+            --cream-warm: #eaf2fb;
+            --paper: #ffffff;
+            --accent: #3d95ef;
+            --accent-deep: #2476d4;
+            --gold: #f0b248;
+            --violet: #7c5cff;
+            --violet-deep: #5b3ee0;
+            --sky: #6fd0f1;
+            --brand-deep: #4963ec;
+            --border: #dbe6f2;
+            --muted: #6b7a99;
+            --shadow-sm: 0 1px 2px rgba(15, 26, 58, 0.06), 0 2px 8px rgba(15, 26, 58, 0.04);
+            --shadow-md: 0 4px 12px rgba(15, 26, 58, 0.08), 0 12px 32px rgba(15, 26, 58, 0.06);
+            --shadow-lg: 0 12px 24px rgba(15, 26, 58, 0.10), 0 24px 64px rgba(15, 26, 58, 0.08);
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #FFFFFF;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--ink);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        
+
+        /* Domino-dot background pattern */
+        .dot-bg {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.5px);
+            background-size: 32px 32px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Navbar ===== */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e0e0e0;
-            padding: 1rem 2rem;
+            top: 0; left: 0; right: 0;
+            background: rgba(247, 249, 252, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2.5rem;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        
+
         .navbar-brand {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #3498db;
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            font-variation-settings: "opsz" 48;
+            color: var(--ink);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: -0.01em;
         }
-        
+
+        .brand-dots {
+            display: inline-flex;
+            gap: 3px;
+        }
+        .brand-dots span {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--sky);
+        }
+        .brand-dots span:nth-child(2) { background: var(--accent); }
+        .brand-dots span:nth-child(3) { background: var(--violet); }
+
         .navbar-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.25rem;
             align-items: center;
         }
-        
+
         .navbar-links a {
-            color: #666;
+            color: var(--ink-soft);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.92rem;
             transition: color 0.2s;
+            position: relative;
         }
-        
-        .navbar-links a:hover {
-            color: #3498db;
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -4px;
+            width: 0; height: 2px;
+            background: var(--accent);
+            transition: width 0.25s ease;
         }
-        
+
+        .navbar-links a:hover { color: var(--ink); }
+        .navbar-links a:hover::after { width: 100%; }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--ink);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== Hero ===== */
         .hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem;
-            padding-top: 5rem;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 7rem 2rem 4rem;
+            background:
+                radial-gradient(ellipse 70% 50% at 12% 8%, rgba(111, 208, 241, 0.32), transparent 60%),
+                radial-gradient(ellipse 60% 55% at 88% 92%, rgba(124, 92, 255, 0.22), transparent 65%),
+                radial-gradient(ellipse 65% 45% at 50% 60%, rgba(61, 149, 239, 0.10), transparent 70%),
+                var(--cream);
+            overflow: hidden;
         }
-        
+
+        /* Decorative floating dominos */
+        .float-domino {
+            position: absolute;
+            width: 60px;
+            height: 120px;
+            background: var(--paper);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            opacity: 0.7;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+        .float-domino::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 8%; right: 8%;
+            height: 1px;
+            background: var(--border);
+        }
+        .float-domino .half {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+        .float-domino .pip {
+            position: absolute;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--ink);
+        }
+
+        .fd-1 { top: 15%; left: 8%; transform: rotate(-18deg); animation: drift 12s ease-in-out infinite; }
+        .fd-2 { top: 22%; right: 10%; transform: rotate(22deg); animation: drift 14s ease-in-out infinite 1s; }
+        .fd-3 { bottom: 18%; left: 12%; transform: rotate(15deg); animation: drift 16s ease-in-out infinite 0.5s; }
+        .fd-4 { bottom: 12%; right: 8%; transform: rotate(-12deg); animation: drift 13s ease-in-out infinite 2s; }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0,0) rotate(var(--r, 0deg)); }
+            50% { transform: translate(8px, -12px) rotate(var(--r, 0deg)); }
+        }
+        .fd-1 { --r: -18deg; }
+        .fd-2 { --r: 22deg; }
+        .fd-3 { --r: 15deg; }
+        .fd-4 { --r: -12deg; }
+
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+            animation: fadeUp 0.9s ease-out;
         }
-        
-        .logo {
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-        
-        .tagline {
-            font-size: 1.5rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-        
-        .cta-button {
+
+        .eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
+            font-size: 0.78rem;
             font-weight: 600;
-            color: white;
-            background: linear-gradient(135deg, #3498db, #8B5CF6);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--accent);
+            border-radius: 100px;
+            background: rgba(61, 149, 239, 0.05);
+        }
+        .eyebrow .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--violet);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .logo {
+            width: 130px; height: 130px;
+            border-radius: 28px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.75rem;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.75rem, 7vw, 4.75rem);
+            font-weight: 600;
+            font-variation-settings: "opsz" 144;
+            line-height: 1.02;
+            letter-spacing: -0.025em;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        h1 em {
+            font-style: italic;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--accent); /* fallback */
+        }
+
+        .tagline {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+            color: var(--ink-soft);
+            margin-bottom: 1.25rem;
+            font-weight: 400;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.65;
+        }
+
+        /* ===== Download buttons ===== */
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1.6rem;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--violet-deep) 100%);
+            color: var(--cream);
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            border-radius: 14px;
+            border: 1px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 8px 20px rgba(91, 62, 224, 0.25), var(--shadow-md);
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .cta-button:hover {
+
+        .store-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+        .store-btn > * { position: relative; z-index: 1; }
+
+        .store-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 12px 28px rgba(124, 92, 255, 0.35), var(--shadow-lg);
         }
-        
+        .store-btn:hover::before { opacity: 1; }
+
+        .store-btn svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        .store-btn-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+            text-align: left;
+        }
+        .store-btn-text .small {
+            font-size: 0.7rem;
+            opacity: 0.85;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        .store-btn-text .large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .store-btn.coming-soon {
+            background: transparent;
+            color: var(--ink-soft);
+            border: 1px dashed var(--ink-soft);
+            cursor: default;
+            box-shadow: none;
+        }
+        .store-btn.coming-soon::before { display: none; }
+        .store-btn.coming-soon:hover {
+            transform: none;
+            box-shadow: none;
+            background: rgba(15, 26, 58, 0.03);
+        }
+        .store-btn.coming-soon .badge {
+            position: absolute;
+            top: -10px;
+            right: 12px;
+            background: var(--gold);
+            color: var(--ink);
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 3px 8px;
+            border-radius: 100px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-meta {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* ===== Section divider ===== */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 2.5rem 0 0;
+        }
+        .divider span {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--ink);
+        }
+        .divider span:nth-child(2) { background: var(--accent); }
+
+        /* ===== Features ===== */
         .features {
-            padding: 5rem 2rem;
+            position: relative;
+            padding: 6rem 2rem 5rem;
             max-width: 1200px;
             margin: 0 auto;
-            background: #FFFFFF;
         }
-        
-        .section-title {
+
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
+            margin-bottom: 4rem;
         }
-        
+
+        .section-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+        .section-title em {
+            font-style: italic;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--accent);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
         }
-        
+
         .feature-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid #e0e0e0;
-            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            background: var(--paper);
+            padding: 2rem 1.75rem;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+            overflow: hidden;
         }
-        
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sky), var(--accent), var(--violet));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
         }
-        
+        .feature-card:hover::before { transform: scaleX(1); }
+
+        .feature-num {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
         .feature-icon {
-            font-size: 3rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 1rem;
+            background: var(--cream-warm);
+            border-radius: 12px;
+            color: var(--ink);
         }
-        
+        .feature-icon svg { width: 22px; height: 22px; }
+
         .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: var(--ink);
+            letter-spacing: -0.01em;
         }
-        
+
         .feature-description {
-            color: #666;
+            color: var(--muted);
+            font-size: 0.94rem;
             line-height: 1.6;
         }
-        
+
+        /* ===== Premium section ===== */
         .premium {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            position: relative;
+            padding: 6rem 2rem;
+            background:
+                radial-gradient(ellipse 70% 60% at 15% 10%, rgba(111, 208, 241, 0.18), transparent 60%),
+                radial-gradient(ellipse 60% 55% at 88% 90%, rgba(124, 92, 255, 0.35), transparent 65%),
+                radial-gradient(ellipse 80% 50% at 50% 50%, rgba(61, 149, 239, 0.15), transparent 70%),
+                linear-gradient(135deg, #1a4a8a 0%, #1e2960 50%, #0f1a3a 100%);
+            color: var(--cream);
+            overflow: hidden;
+        }
+        .premium .dot-bg {
+            background-image: radial-gradient(circle, var(--cream) 1px, transparent 1.5px);
+            opacity: 0.04;
+        }
+
+        .premium-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
             text-align: center;
         }
-        
-        .premium-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
+
         .premium-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #3498db, #8B5CF6);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            font-size: 0.78rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
             margin-bottom: 1rem;
         }
-        
-        .premium-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .premium-badge::before, .premium-badge::after {
+            content: '';
+            width: 24px; height: 1px;
+            background: var(--gold);
         }
-        
+
+        .premium-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        .premium-title em {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .premium-sub {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            opacity: 0.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .premium-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem 1.5rem;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
         .premium-feature {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-            color: #333;
+            gap: 0.75rem;
+            font-size: 0.98rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(247, 249, 252, 0.1);
         }
-        
+        .premium-feature .check {
+            width: 22px; height: 22px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--ink);
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        /* ===== Footer ===== */
         footer {
-            padding: 3rem 2rem;
+            padding: 3.5rem 2rem 2.5rem;
             text-align: center;
-            background: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
+            background: var(--cream-warm);
+            border-top: 1px solid var(--border);
         }
-        
+
+        .footer-brand {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
-        
         .footer-links a {
-            color: #666;
+            color: var(--ink-soft);
             text-decoration: none;
+            font-size: 0.92rem;
             transition: color 0.2s;
         }
-        
-        .footer-links a:hover {
-            color: #3498db;
-        }
-        
+        .footer-links a:hover { color: var(--accent); }
+
         .copyright {
-            color: #999;
-            font-size: 0.9rem;
+            color: var(--muted);
+            font-size: 0.85rem;
         }
-        
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #333;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
+
+        /* ===== Mobile ===== */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            
+            .navbar { padding: 1rem 1.25rem; }
             .navbar-links {
                 display: none;
                 position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
+                top: 100%; left: 0; right: 0;
+                background: rgba(247, 249, 252, 0.98);
+                backdrop-filter: blur(16px);
                 flex-direction: column;
-                padding: 1rem;
+                padding: 1.25rem;
                 gap: 1rem;
-                border-bottom: 1px solid #e0e0e0;
+                border-bottom: 1px solid var(--border);
             }
-            
-            .navbar-links.active {
-                display: flex;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+            .navbar-links.active { display: flex; }
+            .mobile-menu-toggle { display: block; }
+
+            .float-domino { display: none; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .features { padding: 4rem 1.5rem; }
+            .premium { padding: 4rem 1.5rem; }
+
+            .store-btn { min-width: 0; width: 100%; max-width: 280px; }
+            .download-buttons { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="navbar-brand">Magic Domino™</a>
-        <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+        <a href="index.html" class="navbar-brand">
+            <span class="brand-dots"><span></span><span></span><span></span></span>
+            Magic Domino<sup style="font-size:0.6em;font-weight:400;">™</sup>
+        </a>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
         <div class="navbar-links" id="navbarLinks">
             <a href="index.html">Home</a>
             <a href="privacy.html">Privacy</a>
@@ -308,110 +696,154 @@
     </nav>
 
     <section class="hero">
+        <div class="dot-bg"></div>
+
+        <!-- Decorative floating dominoes -->
+        <div class="float-domino fd-1" aria-hidden="true">
+            <div class="half"><span class="pip" style="top:20%;left:20%"></span><span class="pip" style="bottom:20%;right:20%"></span></div>
+            <div class="half"><span class="pip" style="top:50%;left:50%;transform:translate(-50%,-50%)"></span></div>
+        </div>
+        <div class="float-domino fd-2" aria-hidden="true">
+            <div class="half"><span class="pip" style="top:50%;left:50%;transform:translate(-50%,-50%)"></span></div>
+            <div class="half"><span class="pip" style="top:20%;left:20%"></span><span class="pip" style="top:20%;right:20%"></span><span class="pip" style="bottom:20%;left:20%"></span><span class="pip" style="bottom:20%;right:20%"></span></div>
+        </div>
+        <div class="float-domino fd-3" aria-hidden="true">
+            <div class="half"><span class="pip" style="top:20%;left:20%"></span><span class="pip" style="top:20%;right:20%"></span><span class="pip" style="bottom:20%;left:20%"></span></div>
+            <div class="half"><span class="pip" style="top:20%;left:20%"></span><span class="pip" style="top:20%;right:20%"></span><span class="pip" style="bottom:20%;left:20%"></span><span class="pip" style="bottom:20%;right:20%"></span><span class="pip" style="top:50%;left:50%;transform:translate(-50%,-50%)"></span></div>
+        </div>
+        <div class="float-domino fd-4" aria-hidden="true">
+            <div class="half"><span class="pip" style="top:20%;left:20%"></span><span class="pip" style="bottom:20%;right:20%"></span></div>
+            <div class="half"><span class="pip" style="top:20%;left:20%"></span><span class="pip" style="top:20%;right:20%"></span><span class="pip" style="bottom:20%;left:20%"></span></div>
+        </div>
+
         <div class="hero-content">
-            <img src="app-icon.png" alt="Magic Domino Icon" class="logo" style="width: 150px; height: 150px; border-radius: 30px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);">
-            <h1>Magic Domino™</h1>
-            <p class="tagline">The Ultimate Dominoes Score Keeper</p>
-            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
-                Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode.
+            <span class="eyebrow"><span class="dot"></span> Now with AI Score Counting</span>
+            <img src="app-icon.png" alt="Magic Domino Icon" class="logo">
+            <h1>Score smarter,<br>play <em>magical</em>.</h1>
+            <p class="tagline">The ultimate dominoes score keeper.</p>
+            <p class="hero-desc">
+                Point your camera, let AI do the counting, and get back to the game. Beautiful themes, tournament brackets, and live scores on your lock screen.
             </p>
-            <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055?uo=4" class="cta-button">
-                <span>Download on the</span>
-                <span style="font-size: 1.4rem;">App Store</span>
-            </a>
+
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055?uo=4" class="store-btn">
+                    <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+                        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                    </svg>
+                    <span class="store-btn-text">
+                        <span class="small">Download on the</span>
+                        <span class="large">App Store</span>
+                    </span>
+                </a>
+
+                <span class="store-btn coming-soon" role="button" aria-disabled="true">
+                    <span class="badge">Soon</span>
+                    <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+                        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                    </svg>
+                    <span class="store-btn-text">
+                        <span class="small">Coming soon to</span>
+                        <span class="large">Google Play</span>
+                    </span>
+                </span>
+            </div>
+
+            <div class="hero-meta">
+                <span>★ Family-friendly</span>
+                <span>·</span>
+                <span>14-day free trial</span>
+                <span>·</span>
+                <span>iPhone & iPad</span>
+            </div>
         </div>
     </section>
 
     <section class="features">
-        <h2 class="section-title">Powerful Features</h2>
+        <div class="section-header">
+            <p class="section-eyebrow">What's inside</p>
+            <h2 class="section-title">Built for <em>real</em> game nights.</h2>
+        </div>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">📸</div>
+                <span class="feature-num">01 / Vision</span>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
                 <h3 class="feature-title">AI Score Counting</h3>
-                <p class="feature-description">
-                    Point your camera at your dominoes and AI instantly detects and counts the score in real-time. No manual counting or disputes!
-                </p>
+                <p class="feature-description">Point your camera at your dominoes and AI instantly detects and counts the score in real-time. No manual counting, no disputes.</p>
             </div>
-            
+
             <div class="feature-card">
-                <div class="feature-icon">🏆</div>
+                <span class="feature-num">02 / Brackets</span>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                </div>
                 <h3 class="feature-title">Tournament Mode</h3>
-                <p class="feature-description">
-                    Organize brackets for 4, 8, 16, or 32 players. Perfect for family gatherings and competitive events.
-                </p>
+                <p class="feature-description">Organize brackets for 4, 8, 16, or 32 players. Perfect for family gatherings and competitive events.</p>
             </div>
-            
+
             <div class="feature-card">
-                <div class="feature-icon">🎨</div>
+                <span class="feature-num">03 / Style</span>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                </div>
                 <h3 class="feature-title">Beautiful Themes</h3>
-                <p class="feature-description">
-                    Choose from stunning themes and customizable animations to personalize your game experience.
-                </p>
+                <p class="feature-description">Stunning themes and customizable animations to personalize your game experience for any occasion.</p>
             </div>
-            
+
             <div class="feature-card">
-                <div class="feature-icon">☁️</div>
+                <span class="feature-num">04 / Sync</span>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                </div>
                 <h3 class="feature-title">iCloud Sync</h3>
-                <p class="feature-description">
-                    Keep your game history synced across all your Apple devices seamlessly.
-                </p>
+                <p class="feature-description">Keep your game history synced across all your Apple devices seamlessly and securely.</p>
             </div>
-            
+
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
+                <span class="feature-num">05 / History</span>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
                 <h3 class="feature-title">Game History</h3>
-                <p class="feature-description">
-                    Track every game with detailed statistics and review past matches anytime.
-                </p>
+                <p class="feature-description">Track every game with detailed statistics. Review past matches and watch your rivalries unfold over time.</p>
             </div>
-            
+
             <div class="feature-card">
-                <div class="feature-icon">🔄</div>
+                <span class="feature-num">06 / Share</span>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </div>
                 <h3 class="feature-title">Share Games</h3>
-                <p class="feature-description">
-                    Export and share your game states with friends to continue playing later.
-                </p>
+                <p class="feature-description">Export and share your game states with friends to pause, resume, or replay any match later.</p>
             </div>
         </div>
     </section>
 
     <section class="premium">
+        <div class="dot-bg"></div>
         <div class="premium-content">
-            <span class="premium-badge">✨ PREMIUM</span>
-            <h2 class="section-title">Unlock the Full Experience</h2>
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 1rem;">
-                Try Premium features free for 14 days
-            </p>
+            <p class="premium-badge">Premium</p>
+            <h2 class="premium-title">Unlock the <em>full</em> experience.</h2>
+            <p class="premium-sub">Try Premium free for 14 days.</p>
             <div class="premium-features">
-                <div class="premium-feature">
-                    <span>✓</span>
-                    <span>Unlimited AI Counting</span>
-                </div>
-                <div class="premium-feature">
-                    <span>✓</span>
-                    <span>Ad-Free Experience</span>
-                </div>
-                <div class="premium-feature">
-                    <span>✓</span>
-                    <span>All Themes & Animations</span>
-                </div>
-                <div class="premium-feature">
-                    <span>✓</span>
-                    <span>Tournament Mode</span>
-                </div>
-                <div class="premium-feature">
-                    <span>✓</span>
-                    <span>iCloud Sync</span>
-                </div>
-                <div class="premium-feature">
-                    <span>✓</span>
-                    <span>Share Games</span>
-                </div>
+                <div class="premium-feature"><span class="check">✓</span> Unlimited AI Counting</div>
+                <div class="premium-feature"><span class="check">✓</span> Ad-Free Experience</div>
+                <div class="premium-feature"><span class="check">✓</span> All Themes & Animations</div>
+                <div class="premium-feature"><span class="check">✓</span> Tournament Mode</div>
+                <div class="premium-feature"><span class="check">✓</span> iCloud Sync</div>
+                <div class="premium-feature"><span class="check">✓</span> Share Games</div>
+                <div class="premium-feature"><span class="check">✓</span> Widgets & Live Activity</div>
+                <div class="premium-feature"><span class="check">✓</span> Custom Backgrounds</div>
             </div>
         </div>
     </section>
 
     <footer>
+        <div class="footer-brand">
+            <span class="brand-dots"><span></span><span></span><span></span></span>
+            Magic Domino<sup style="font-size:0.6em;font-weight:400;">™</sup>
+        </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="privacy.html">Privacy Policy</a>
@@ -419,15 +851,12 @@
             <a href="support.html">Support</a>
             <a href="mailto:magicdominoapp@gmail.com">Contact</a>
         </div>
-        <p class="copyright">
-            © 2025 Magic Domino™. All rights reserved.
-        </p>
+        <p class="copyright">© 2025 Magic Domino™. All rights reserved.</p>
     </footer>
 
     <script>
         function toggleMenu() {
-            const navLinks = document.getElementById('navbarLinks');
-            navLinks.classList.toggle('active');
+            document.getElementById('navbarLinks').classList.toggle('active');
         }
     </script>
 </body>
