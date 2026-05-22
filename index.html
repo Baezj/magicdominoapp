@@ -340,7 +340,6 @@
             box-shadow: 0 8px 20px rgba(91, 62, 224, 0.25), var(--shadow-md);
             min-width: 200px;
             position: relative;
-            overflow: hidden;
         }
 
         .store-btn::before {
@@ -348,6 +347,7 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+            border-radius: inherit;
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 0;
@@ -410,6 +410,7 @@
             padding: 3px 8px;
             border-radius: 100px;
             box-shadow: var(--shadow-sm);
+            z-index: 2;
         }
 
         .hero-meta {
