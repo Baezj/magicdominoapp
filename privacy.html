@@ -63,13 +63,17 @@
             gap: 0.6rem;
             letter-spacing: -0.01em;
         }
-        .brand-dots { display: inline-flex; gap: 3px; }
-        .brand-dots span {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--sky);
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            box-shadow:
+                0 1px 2px rgba(15, 26, 58, 0.10),
+                0 4px 10px rgba(61, 149, 239, 0.18);
+            display: block;
+            transition: transform 0.25s ease;
         }
-        .brand-dots span:nth-child(2) { background: var(--accent); }
-        .brand-dots span:nth-child(3) { background: var(--violet); }
+        .navbar-brand:hover .brand-icon { transform: rotate(-6deg) scale(1.05); }
         .navbar-links { display: flex; gap: 2.25rem; align-items: center; }
         .navbar-links a {
             color: var(--ink-soft);
@@ -258,7 +262,7 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">
-            <span class="brand-dots"><span></span><span></span><span></span></span>
+            <img src="app-icon.png" alt="" class="brand-icon">
             Magic Domino<sup style="font-size:0.6em;font-weight:400;">™</sup>
         </a>
         <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
@@ -351,7 +355,7 @@
 
     <footer>
         <div class="footer-brand">
-            <span class="brand-dots"><span></span><span></span><span></span></span>
+            <img src="app-icon.png" alt="" class="brand-icon">
             Magic Domino<sup style="font-size:0.6em;font-weight:400;">™</sup>
         </div>
         <div class="footer-links">
