@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use — Magic Domino™</title>
+    <title>Support — Magic Domino™</title>
     <link rel="icon" type="image/png" href="app-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -134,11 +134,11 @@
             -webkit-text-fill-color: transparent;
             color: var(--accent);
         }
-        .last-updated {
-            color: var(--muted);
-            font-style: italic;
+        .page-hero p.intro {
             font-family: 'Fraunces', serif;
-            font-size: 1.05rem;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--ink-soft);
         }
 
         /* ===== Content ===== */
@@ -148,13 +148,53 @@
             padding: 2rem 1.5rem 5rem;
         }
 
+        /* Contact box */
+        .contact-box {
+            background: var(--paper);
+            border: 1px solid var(--border);
+            padding: 1.5rem 1.75rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            box-shadow: 0 2px 12px rgba(15, 26, 58, 0.04);
+        }
+        .contact-icon {
+            width: 48px; height: 48px;
+            background: var(--accent);
+            color: var(--cream);
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .contact-icon svg { width: 22px; height: 22px; }
+        .contact-text { flex: 1; min-width: 0; }
+        .contact-text .label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            margin-bottom: 0.2rem;
+        }
+        .contact-text a {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .contact-text a:hover { color: var(--accent); }
+
         h2 {
             font-family: 'Fraunces', serif;
             color: var(--ink);
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 600;
-            margin-top: 2.75rem;
-            margin-bottom: 1rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
             letter-spacing: -0.015em;
             position: relative;
             padding-left: 1.25rem;
@@ -163,49 +203,81 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 0.65rem;
+            top: 0.7rem;
             width: 6px; height: 6px;
             border-radius: 50%;
             background: var(--accent);
         }
 
-        h3 {
-            font-family: 'Fraunces', serif;
-            color: var(--ink-soft);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-top: 1.75rem;
-            margin-bottom: 0.6rem;
-            letter-spacing: -0.01em;
-        }
-
         p { margin-bottom: 1rem; color: var(--ink-soft); }
         p strong { color: var(--ink); }
-
-        ul {
-            margin-bottom: 1rem;
-            padding-left: 1.25rem;
-            color: var(--ink-soft);
-        }
-        ul li { margin-bottom: 0.5rem; }
-        ul li::marker { color: var(--accent); }
-        ul li strong { color: var(--ink); }
 
         a { color: var(--accent); text-decoration: none; font-weight: 500; }
         a:hover { text-decoration: underline; }
 
-        /* Special legal-emphasis blocks */
-        .legal-emphasis {
-            background: var(--cream-warm);
+        /* ===== FAQ accordion ===== */
+        .faq-item {
+            background: var(--paper);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--ink);
-            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
+        .faq-item[open] {
+            border-color: var(--accent);
+            box-shadow: 0 2px 12px rgba(61, 149, 239, 0.08);
+        }
+        .faq-item summary {
+            padding: 1.1rem 1.5rem;
+            font-weight: 600;
+            color: var(--ink);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: color 0.2s;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary:hover { color: var(--accent); }
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            transition: transform 0.25s;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        .faq-body {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--ink-soft);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+        .faq-body ul {
+            margin-top: 0.5rem;
+            padding-left: 1.25rem;
+        }
+        .faq-body ul li { margin-bottom: 0.4rem; }
+        .faq-body ul li::marker { color: var(--accent); }
+
+        /* Bug report list */
+        .info-list {
+            background: var(--paper);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem 1.25rem 2.75rem;
+            margin: 1rem 0;
+            color: var(--ink-soft);
+        }
+        .info-list li { margin-bottom: 0.4rem; }
+        .info-list li::marker { color: var(--accent); }
 
         /* ===== Footer ===== */
         footer {
@@ -258,6 +330,10 @@
             .mobile-menu-toggle { display: block; }
             .page-hero { padding: 6.5rem 1.25rem 1rem; }
             .content { padding: 1rem 1.25rem 3rem; }
+            .contact-box { padding: 1rem 1.25rem; flex-direction: column; text-align: center; align-items: center; }
+            .contact-text a { font-size: 0.95rem; }
+            .faq-item summary { padding: 1rem 1.25rem; font-size: 0.95rem; }
+            .faq-body { padding: 1rem 1.25rem 1.25rem; }
             footer { padding: 2.5rem 1.25rem; }
         }
     </style>
@@ -279,130 +355,134 @@
     </nav>
 
     <div class="page-hero">
-        <p class="page-eyebrow">Legal</p>
-        <h1>Terms of <em>Use</em></h1>
-        <p class="last-updated">Last updated: May 22, 2026</p>
+        <p class="page-eyebrow">Help Center</p>
+        <h1>How can we <em>help</em>?</h1>
+        <p class="intro">We typically respond within 24–48 hours.</p>
     </div>
 
     <div class="content">
-        <h2>1. Acceptance of Terms</h2>
-        <p>Welcome to Magic Domino! By downloading, installing, or using the Magic Domino™ mobile application (the "App"), you agree to be bound by these Terms of Use ("Terms"). These terms help protect both you and us. If you don't agree to these Terms, please don't use the App.</p>
+        <div class="contact-box">
+            <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-text">
+                <div class="label">Email Support</div>
+                <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a>
+            </div>
+        </div>
 
-        <h2>2. License Grant</h2>
-        <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the App for your personal, non-commercial use on devices that you own or control.</p>
+        <h2>Frequently Asked Questions</h2>
 
-        <h2>3. Subscription Terms</h2>
-        <h3>3.1 Free Trial</h3>
-        <p>Magic Domino offers a 14-day free trial for new Premium subscribers choosing a recurring subscription (Monthly, 6-Month, or Annual). The free trial does NOT apply to the Lifetime Access purchase, which requires immediate one-time payment. You will not be charged during the trial period for recurring subscriptions. If you do not cancel before the trial ends, you will be automatically charged for your chosen subscription plan.</p>
+        <details class="faq-item">
+            <summary>How does AI score counting work?</summary>
+            <div class="faq-body">Point your camera at your dominoes using the camera icon in the app. Our AI will automatically detect and count the pips in real-time as the dominoes appear in view. Make sure the dominoes are clearly visible and well-lit for best results.</div>
+        </details>
 
-        <h3>3.2 Auto-Renewal</h3>
-        <p>All subscriptions automatically renew unless auto-renewal is turned off at least 24 hours before the end of the current subscription period. Your iTunes/App Store account will be charged for renewal within 24 hours prior to the end of the current period.</p>
+        <details class="faq-item">
+            <summary>What's included in the free version?</summary>
+            <div class="faq-body">The free version includes basic score tracking for 2-4 players, 3 free AI counting uses, and limited themes. You can play unlimited games!</div>
+        </details>
 
-        <h3>3.3 Subscription Plans</h3>
-        <p>Magic Domino offers the following subscription options:</p>
-        <ul>
-            <li><strong>Monthly Subscription:</strong> Billed monthly</li>
-            <li><strong>6-Month Subscription:</strong> Billed every 6 months</li>
-            <li><strong>Annual Subscription:</strong> Billed annually</li>
-            <li><strong>Lifetime Access:</strong> One-time payment for permanent access</li>
+        <details class="faq-item">
+            <summary>What does Premium include?</summary>
+            <div class="faq-body">Premium unlocks unlimited AI counting, ad-free experience, tournament mode, all themes and animations, iCloud sync, game sharing, widgets & live activity (iOS 26+), and custom scoreboard backgrounds (iOS 26+). Recurring subscriptions (Monthly, 6-Month, Annual) include a 14-day free trial. Lifetime Access requires immediate one-time payment with no trial.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Does the 14-day free trial apply to all Premium options?</summary>
+            <div class="faq-body">No. The 14-day free trial only applies to recurring subscriptions (Monthly, 6-Month, and Annual plans). If you choose Lifetime Access, it's a one-time payment with no trial period, but you get permanent Premium access forever.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I add widgets to my home screen? (Premium, iOS 26+)</summary>
+            <div class="faq-body">Long-press on your home screen, tap the "+" button in the top left, search for "Magic Domino", and select the widget size you want. You can add widgets to your home screen or lock screen to see your live scores!</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>What is Live Activity? (Premium, iOS 26+)</summary>
+            <div class="faq-body">Live Activity displays your current game score in real-time on your lock screen and Dynamic Island. When you start a new game with Premium, your live score automatically appears! It updates as you add points during the game.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I add Quick Points from my Lock Screen or Dynamic Island? (Premium, iOS 26+)</summary>
+            <div class="faq-body">With Premium and iOS 26+, when you have an active game, you'll see Live Activity on your Lock Screen and Dynamic Island. Simply tap the Quick Points button to add points without opening the app. You can also undo your last score directly from there!</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I customize my scoreboard background? (Premium, iOS 26+)</summary>
+            <div class="faq-body">Go to Settings → Scoreboard Background → Select Photo. Choose a photo from your library, adjust the opacity and blur to your liking, and save! Your photo is stored locally on your device and never uploaded to our servers.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Why can't I see the custom background or widget features?</summary>
+            <div class="faq-body">
+                These are Premium features with specific iOS requirements:
+                <ul>
+                    <li>Widgets & Live Activity require iOS 26 or later and a Premium subscription</li>
+                    <li>Custom Backgrounds require iOS 26 or later and a Premium subscription</li>
+                </ul>
+                Make sure your device meets these requirements and that you have an active Premium subscription.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I restore my Premium purchase?</summary>
+            <div class="faq-body">Go to Settings → tap "Upgrade" → On the paywall screen, tap "Restore Purchase" at the top right. Your purchase is tied to your Apple ID and will be restored automatically.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can I sync my games across devices?</summary>
+            <div class="faq-body">Yes! With a Premium subscription, your game history syncs automatically via iCloud across all your Apple devices.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I cancel my subscription?</summary>
+            <div class="faq-body">Subscriptions are managed through Apple. Go to Settings → [Your Name] → Subscriptions → Magic Domino → Cancel Subscription.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How does Tournament Mode work?</summary>
+            <div class="faq-body">Create a tournament with 4, 8, 16, or 32 players. The app automatically generates brackets and tracks winners through each round until a champion is crowned!</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can I share my games with friends?</summary>
+            <div class="faq-body">Yes! Premium users can export game states and share them with friends to continue playing later.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>The AI isn't counting correctly. What should I do?</summary>
+            <div class="faq-body">
+                Make sure your dominoes are:
+                <ul>
+                    <li>Well-lit and clearly visible in the camera view</li>
+                    <li>Not overlapping each other</li>
+                    <li>Against a contrasting background</li>
+                    <li>Held steady for the AI to detect them</li>
+                </ul>
+                If issues persist, you can always manually enter the score.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Is my photo safe when I use a custom background?</summary>
+            <div class="faq-body">Absolutely! When you select a photo for your scoreboard background, it's compressed and stored locally on your device only. Your photos are never uploaded to our servers or shared with anyone. You have complete control and can remove the custom background anytime.</div>
+        </details>
+
+        <h2>Feature Requests & Feedback</h2>
+        <p>We love hearing from our users! If you have suggestions for new features or improvements, please email us at <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a></p>
+
+        <h2>Report a Bug</h2>
+        <p>Found a bug? Please let us know by emailing <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a> with:</p>
+        <ul class="info-list">
+            <li>Description of the issue</li>
+            <li>Steps to reproduce it</li>
+            <li>Your device model and iOS version</li>
+            <li>Screenshots if possible</li>
         </ul>
 
-        <h3>3.4 Managing Subscriptions</h3>
-        <p>You can manage your subscriptions and turn off auto-renewal by going to your App Store Account Settings after purchase. Subscriptions cannot be cancelled during the active subscription period.</p>
-
-        <h3>3.5 Pricing</h3>
-        <p>All prices are in US dollars and may vary by country. Prices are subject to change, but any price changes will not affect existing subscribers until their next renewal.</p>
-
-        <h2>4. Refund Policy</h2>
-        <p>All purchases are processed through the Apple App Store and are subject to Apple's refund policies. We do not directly process refunds. To request a refund, please contact Apple Support or visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
-
-        <h2>5. Premium Features</h2>
-        <p>Premium subscription includes:</p>
-        <ul>
-            <li>Unlimited AI score counting</li>
-            <li>Ad-free experience</li>
-            <li>Tournament mode with bracket generation</li>
-            <li>iCloud sync across devices</li>
-            <li>All themes and victory animations</li>
-            <li>Game state sharing</li>
-            <li>Widgets & Live Activity (iOS 26+): Display live scores on your home screen, lock screen, and Dynamic Island. Add Quick Points and undo scores directly from your Lock Screen without opening the app.</li>
-            <li>Custom Scoreboard Background (iOS 26+): Personalize your scoreboard with photos from your library</li>
-        </ul>
-        <p>Free version users receive 3 AI counting uses per game and have access to basic features with advertisements.</p>
-
-        <h2>6. User Obligations</h2>
-        <p>You agree to:</p>
-        <ul>
-            <li>Use the App only for lawful purposes</li>
-            <li>Not attempt to reverse engineer, decompile, or disassemble the App</li>
-            <li>Not use the App in any way that could damage, disable, or impair the App</li>
-            <li>Comply with all applicable laws and regulations</li>
-        </ul>
-
-        <h2>7. Device Permissions</h2>
-        <h3>7.1 Camera Access</h3>
-        <p>The App's AI counting feature requires camera access. All image processing happens locally on your device in real-time. Photos are never saved, stored, or uploaded to our servers. By using the AI counting feature, you grant the App permission to access your device camera solely for this purpose.</p>
-
-        <h3>7.2 Photo Library Access (Premium, iOS 26+)</h3>
-        <p>Premium subscribers on iOS 26 or later can customize their scoreboard background with photos from their device. When you select a photo:</p>
-        <ul>
-            <li>The photo is compressed and stored locally on your device</li>
-            <li>Photos are never uploaded to our servers</li>
-            <li>You can remove the custom background at any time</li>
-            <li>Only you have access to the photo you select</li>
-        </ul>
-        <p>By using the custom background feature, you grant the App permission to access selected photos from your library solely for this purpose.</p>
-
-        <h2>8. Data and Privacy</h2>
-        <p>Your use of the App is also governed by our <a href="privacy.html">Privacy Policy</a>. Please review our Privacy Policy to understand how we handle your data.</p>
-
-        <h2>9. Intellectual Property</h2>
-        <p>The App, including all content, features, and functionality, is owned by Magic Domino and is protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. The Magic Domino™ name and logo are trademarks of Magic Domino.</p>
-
-        <h2>10. Disclaimer of Warranties</h2>
-        <p>We work hard to make Magic Domino reliable and bug-free, but like all software, we can't guarantee perfection. Here's the legal language we're required to include:</p>
-        <p class="legal-emphasis"><strong>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</strong></p>
-
-        <h2>11. Limitation of Liability</h2>
-        <p>We strive to provide a great experience, but we need to protect ourselves legally. Here's the standard liability limitation:</p>
-        <p class="legal-emphasis"><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL MAGIC DOMINO BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM:</strong></p>
-        <ul>
-            <li>Your use or inability to use the App</li>
-            <li>Any unauthorized access to or use of our servers</li>
-            <li>Any bugs, viruses, or other harmful code</li>
-            <li>Any errors or omissions in any content</li>
-        </ul>
-
-        <h2>12. Modifications to the App</h2>
-        <p>We're constantly working to improve Magic Domino with new features and updates. We reserve the right to modify, update, or discontinue features of the App at any time. While we strive to keep the App running smoothly, we cannot be held liable for any changes or service interruptions.</p>
-
-        <h2>13. Termination</h2>
-        <p>If you violate these Terms, we may stop providing updates, support, or access to Premium features. Since you download the App through the Apple App Store, Apple controls installation and removal — we don't have the ability to remotely disable the App on your device. However, we reserve the right to discontinue service or support if these Terms are violated.</p>
-
-        <h2>14. Third-Party Services</h2>
-        <p>The App integrates with third-party services including:</p>
-        <ul>
-            <li><strong>Apple App Store:</strong> All purchases are processed by Apple</li>
-            <li><strong>iCloud:</strong> Optional sync feature for Premium users</li>
-            <li><strong>Unity Ads:</strong> Third-party advertising for free users. For more information, see <a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity's Privacy Policy</a></li>
-        </ul>
-        <p>Your use of these third-party services is governed by their respective terms and conditions.</p>
-
-        <h2>15. Governing Law</h2>
-        <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of law provisions. Any disputes arising from these Terms or the App shall be resolved in the courts of the United States.</p>
-
-        <h2>16. Changes to Terms</h2>
-        <p>We may update these Terms from time to time to reflect changes in our App or legal requirements. If we make significant changes, we'll update the date at the top and notify you through the App or other appropriate means. Your continued use of the App after changes means you accept the updated Terms.</p>
-
-        <h2>17. Contact Information</h2>
-        <p>If you have any questions about these Terms, please contact us at:<br>
-        <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a></p>
-
-        <h2>18. Severability</h2>
-        <p>If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
-
-        <h2>19. Entire Agreement</h2>
-        <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Magic Domino regarding the App and supersede all prior agreements and understandings.</p>
+        <h2>Response Time</h2>
+        <p>We typically respond to all support requests within 24–48 hours. Thank you for your patience!</p>
     </div>
 
     <footer>
