@@ -63,6 +63,18 @@
             gap: 0.6rem;
             letter-spacing: -0.01em;
         }
+        .brand-name {
+            display: inline;
+            white-space: nowrap;
+        }
+        .brand-tm {
+            font-size: 0.52em;
+            font-weight: 400;
+            vertical-align: super;
+            line-height: 0;
+            letter-spacing: 0;
+            margin-left: 0.05em;
+        }
         .brand-icon {
             width: 32px;
             height: 32px;
@@ -341,8 +353,7 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">
-            <img src="app-icon.png" alt="" class="brand-icon">
-            Magic Domino<sup style="font-size:0.6em;font-weight:400;">™</sup>
+            <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
         </a>
         <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
         <div class="navbar-links" id="navbarLinks">
@@ -486,8 +497,7 @@
 
     <footer>
         <div class="footer-brand">
-            <img src="app-icon.png" alt="" class="brand-icon">
-            Magic Domino<sup style="font-size:0.6em;font-weight:400;">™</sup>
+            <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
