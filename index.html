@@ -716,26 +716,25 @@
             .navbar-links.active { display: flex; }
             .mobile-menu-toggle { display: block; }
 
-            /* Mobile dominoes: smaller, tucked to edges, peek in from corners */
+            /* Mobile dominoes: more visible, show more of each tile */
             .float-domino {
-                width: 38px;
-                height: 76px;
-                opacity: 0.28;
-                border-radius: 6px;
+                width: 44px;
+                height: 88px;
+                opacity: 0.55;
+                border-radius: 7px;
             }
             .float-domino .pip {
-                width: 5px;
-                height: 5px;
+                width: 6px;
+                height: 6px;
             }
-            /* Reposition to peek in from corners without overlapping content */
-            .fd-1 { top: 12%; left: -10px; }
-            .fd-2 { top: 12%; right: -10px; }
-            .fd-3 { bottom: 22%; left: -10px; }
-            .fd-4 { bottom: 22%; right: -10px; }
-            /* Slow drift becomes subtle vertical slide on mobile */
+            /* Show about 2/3 of each tile peeking in from the sides */
+            .fd-1 { top: 10%; left: -14px; }
+            .fd-2 { top: 14%; right: -14px; }
+            .fd-3 { bottom: 24%; left: -14px; }
+            .fd-4 { bottom: 20%; right: -14px; }
             @keyframes drift {
                 0%, 100% { transform: translate(0, 0) rotate(var(--r, 0deg)); }
-                50% { transform: translate(0, -8px) rotate(var(--r, 0deg)); }
+                50% { transform: translate(0, -10px) rotate(var(--r, 0deg)); }
             }
             .fd-1 { --r: -8deg; }
             .fd-2 { --r: 8deg; }
