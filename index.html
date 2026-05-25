@@ -716,8 +716,32 @@
             .navbar-links.active { display: flex; }
             .mobile-menu-toggle { display: block; }
 
-            .float-domino { display: none; }
-            .hero { padding: 5rem 1rem 2rem; }
+            /* Mobile dominoes: smaller, tucked to edges, peek in from corners */
+            .float-domino {
+                width: 38px;
+                height: 76px;
+                opacity: 0.28;
+                border-radius: 6px;
+            }
+            .float-domino .pip {
+                width: 5px;
+                height: 5px;
+            }
+            /* Reposition to peek in from corners without overlapping content */
+            .fd-1 { top: 12%; left: -10px; }
+            .fd-2 { top: 12%; right: -10px; }
+            .fd-3 { bottom: 22%; left: -10px; }
+            .fd-4 { bottom: 22%; right: -10px; }
+            /* Slow drift becomes subtle vertical slide on mobile */
+            @keyframes drift {
+                0%, 100% { transform: translate(0, 0) rotate(var(--r, 0deg)); }
+                50% { transform: translate(0, -8px) rotate(var(--r, 0deg)); }
+            }
+            .fd-1 { --r: -8deg; }
+            .fd-2 { --r: 8deg; }
+            .fd-3 { --r: 8deg; }
+            .fd-4 { --r: -8deg; }
+            .hero { padding: 5rem 1rem 2rem; overflow: hidden; }
             .features { padding: 4rem 1.5rem; }
             .premium { padding: 4rem 1.5rem; }
 
