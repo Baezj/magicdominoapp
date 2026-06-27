@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Domino™ — The Ultimate Dominoes Score Keeper</title>
-    <meta name="description" content="Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode. Available on iPhone and iPad.">
+    <meta name="description" content="Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode. Available on iPhone, iPad, and Android.">
     <link rel="icon" type="image/png" href="app-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -528,6 +528,21 @@
             line-height: 1.6;
         }
 
+        /* Platform availability tag (e.g. "iOS only") on feature cards */
+        .platform-tag {
+            display: inline-block;
+            margin-top: 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-deep);
+            background: rgba(61, 149, 239, 0.08);
+            border: 1px solid rgba(61, 149, 239, 0.25);
+            padding: 3px 9px;
+            border-radius: 100px;
+        }
+
         /* ===== Premium section ===== */
         .premium {
             position: relative;
@@ -619,6 +634,27 @@
             place-items: center;
             font-weight: 700;
             font-size: 0.75rem;
+        }
+        /* "iOS only" tag inside the premium list (dark background) */
+        .premium-feature .plat {
+            font-size: 0.66rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            border: 1px solid rgba(240, 178, 72, 0.45);
+            padding: 2px 7px;
+            border-radius: 100px;
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+        .premium-note {
+            max-width: 640px;
+            margin: 2rem auto 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            opacity: 0.65;
+            text-align: center;
         }
 
         /* ===== Footer ===== */
@@ -805,7 +841,7 @@
                 <span>·</span>
                 <span>14-day free trial</span>
                 <span>·</span>
-                <span>iPhone & iPad</span>
+                <span>iPhone, iPad & Android</span>
             </div>
         </div>
     </section>
@@ -850,6 +886,7 @@
                 </div>
                 <h3 class="feature-title">iCloud Sync</h3>
                 <p class="feature-description">Keep your game history synced across all your Apple devices seamlessly and securely.</p>
+                <span class="platform-tag">iOS only · Android sync coming soon</span>
             </div>
 
             <div class="feature-card">
@@ -883,11 +920,12 @@
                 <div class="premium-feature"><span class="check">✓</span> Ad-Free Experience</div>
                 <div class="premium-feature"><span class="check">✓</span> All Themes & Animations</div>
                 <div class="premium-feature"><span class="check">✓</span> Tournament Mode</div>
-                <div class="premium-feature"><span class="check">✓</span> iCloud Sync</div>
+                <div class="premium-feature"><span class="check">✓</span> iCloud Sync <span class="plat">iOS only</span></div>
                 <div class="premium-feature"><span class="check">✓</span> Share Games</div>
-                <div class="premium-feature"><span class="check">✓</span> Widgets & Live Activity</div>
-                <div class="premium-feature"><span class="check">✓</span> Custom Backgrounds</div>
+                <div class="premium-feature"><span class="check">✓</span> Widgets & Live Activity <span class="plat">iOS 26+</span></div>
+                <div class="premium-feature"><span class="check">✓</span> Custom Backgrounds <span class="plat">iOS 26+</span></div>
             </div>
+            <p class="premium-note">Some Premium features are currently iPhone &amp; iPad exclusives — Android versions are on the way. All other Premium features are available on both platforms.</p>
         </div>
     </section>
 
