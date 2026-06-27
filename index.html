@@ -797,6 +797,17 @@
             gap: 0.6rem;
         }
 
+        .footer-badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .footer-badges .store-badge img {
+            height: 44px;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
@@ -1103,6 +1114,16 @@
     <footer>
         <div class="footer-brand">
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
+        </div>
+        <div class="footer-badges">
+            <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="store-badge" aria-label="Download on the App Store">
+                <img class="badge-en" src="badge_app_store_en.svg" alt="Download on the App Store">
+                <img class="badge-es" src="badge_app_store_es.svg" alt="Descárgalo en el App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.magicdomino.android" class="store-badge" aria-label="Get it on Google Play">
+                <img class="badge-en" src="badge_google_play_en.svg" alt="Get it on Google Play">
+                <img class="badge-es" src="badge_google_play_es.svg" alt="Disponible en Google Play">
+            </a>
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
