@@ -577,9 +577,21 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             justify-content: flex-start;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
         }
-        @media (min-width: 980px) {
-            .showcase-scroll { justify-content: center; overflow-x: visible; flex-wrap: wrap; }
+        .showcase-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .showcase-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .showcase-scroll::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 100px;
+        }
+        .showcase-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--muted);
         }
         .shot {
             flex: 0 0 auto;
