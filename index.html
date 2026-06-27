@@ -569,6 +569,42 @@
             margin: 0 auto;
             text-align: center;
         }
+        .showcase-wrap {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+            padding-bottom: 3px;
+        }
+        .scroll-arrow:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: var(--shadow-lg);
+        }
+        .scroll-arrow-left { left: -8px; }
+        .scroll-arrow-right { right: -8px; }
+        @media (max-width: 760px) {
+            .scroll-arrow { display: none; }
+        }
         .showcase-scroll {
             display: flex;
             gap: 1.5rem;
@@ -999,7 +1035,9 @@
             <p class="section-eyebrow">See it in action</p>
             <h2 class="section-title">Your game, <em>beautifully</em> kept.</h2>
         </div>
-        <div class="showcase-scroll">
+        <div class="showcase-wrap">
+            <button class="scroll-arrow scroll-arrow-left" aria-label="Previous screenshots" onclick="scrollShots(-1)">‹</button>
+            <div class="showcase-scroll" id="showcaseScroll">
             <div class="shot">
                 <div class="shot-frame">
                     <!-- Replace src with your real screenshot, e.g. shot-counter.png -->
@@ -1037,6 +1075,8 @@
                     <span class="placeholder" style="display:none;">Screenshot 6</span>
                 </div>
             </div>
+            </div>
+            <button class="scroll-arrow scroll-arrow-right" aria-label="More screenshots" onclick="scrollShots(1)">›</button>
         </div>
     </section>
 
@@ -1082,6 +1122,14 @@
 
         function toggleMenu() {
             document.getElementById('navbarLinks').classList.toggle('active');
+        }
+
+        function scrollShots(dir) {
+            var row = document.getElementById('showcaseScroll');
+            if (row) {
+                // scroll by roughly two cards each click
+                row.scrollBy({ left: dir * 520, behavior: 'smooth' });
+            }
         }
     </script>
 </body>
