@@ -6,6 +6,24 @@
     <title>Magic Domino™ — The Ultimate Dominoes Score Keeper</title>
     <meta name="description" content="Transform your domino games with AI-powered score counting, beautiful themes, and tournament mode. Available on iPhone, iPad, and Android.">
     <link rel="icon" type="image/png" href="app-icon.png">
+    <link rel="apple-touch-icon" href="app-icon.png">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Magic Domino">
+    <meta property="og:title" content="Magic Domino — Less math, more magic.">
+    <meta property="og:description" content="Point your camera, AI counts the score, and you get back to the game. The ultimate dominoes score keeper — on iPhone, iPad, and Android.">
+    <meta property="og:url" content="https://magicdominoapp.com/">
+    <meta property="og:image" content="https://magicdominoapp.com/social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Magic Domino — AI-powered dominoes score keeper">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Magic Domino — Less math, more magic.">
+    <meta name="twitter:description" content="Point your camera, AI counts the score, and you get back to the game. On iPhone, iPad, and Android.">
+    <meta name="twitter:image" content="https://magicdominoapp.com/social-card.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -543,8 +561,63 @@
             border-radius: 100px;
         }
 
-        /* ===== Premium section ===== */
-        .premium {
+        /* ===== Screenshots showcase ===== */
+        .showcase {
+            position: relative;
+            padding: 2rem 2rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .showcase-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0.5rem 1.5rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            justify-content: flex-start;
+        }
+        @media (min-width: 980px) {
+            .showcase-scroll { justify-content: center; overflow-x: visible; flex-wrap: wrap; }
+        }
+        .shot {
+            flex: 0 0 auto;
+            width: 240px;
+            scroll-snap-align: center;
+        }
+        .shot-frame {
+            width: 240px;
+            height: 500px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            background: var(--cream-warm);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .shot-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .shot-frame .placeholder {
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding: 1rem;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .shot-caption {
+            margin-top: 0.9rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
             position: relative;
             padding: 6rem 2rem;
             background:
@@ -909,6 +982,44 @@
         </div>
     </section>
 
+    <section class="showcase">
+        <div class="section-header">
+            <p class="section-eyebrow">See it in action</p>
+            <h2 class="section-title">Your game, <em>beautifully</em> kept.</h2>
+        </div>
+        <div class="showcase-scroll">
+            <div class="shot">
+                <div class="shot-frame">
+                    <!-- Replace src with your real screenshot, e.g. shot-counter.png -->
+                    <img src="shot-1.png" alt="AI score counting with the camera" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;">Screenshot 1<br>(AI Counting)</span>
+                </div>
+                <p class="shot-caption">AI counts your tiles</p>
+            </div>
+            <div class="shot">
+                <div class="shot-frame">
+                    <img src="shot-2.png" alt="Scoreboard view" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;">Screenshot 2<br>(Scoreboard)</span>
+                </div>
+                <p class="shot-caption">Track every round</p>
+            </div>
+            <div class="shot">
+                <div class="shot-frame">
+                    <img src="shot-3.png" alt="Tournament bracket" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;">Screenshot 3<br>(Tournaments)</span>
+                </div>
+                <p class="shot-caption">Run tournaments</p>
+            </div>
+            <div class="shot">
+                <div class="shot-frame">
+                    <img src="shot-4.png" alt="Game history" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;">Screenshot 4<br>(History)</span>
+                </div>
+                <p class="shot-caption">Relive past games</p>
+            </div>
+        </div>
+    </section>
+
     <section class="premium">
         <div class="dot-bg"></div>
         <div class="premium-content">
@@ -943,6 +1054,12 @@
     </footer>
 
     <script>
+        // Show Spanish store badges for Spanish-language browsers
+        // (activates the existing :lang(es) CSS rules)
+        if ((navigator.language || '').toLowerCase().startsWith('es')) {
+            document.documentElement.lang = 'es';
+        }
+
         function toggleMenu() {
             document.getElementById('navbarLinks').classList.toggle('active');
         }
