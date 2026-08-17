@@ -795,7 +795,11 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
+            text-decoration: none;
+            transition: color 0.2s;
         }
+        .footer-brand:hover { color: var(--accent); }
+        .footer-brand:hover .brand-icon { transform: rotate(-6deg) scale(1.05); }
 
         .footer-badges {
             display: flex;
@@ -911,7 +915,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" id="top">
         <a href="index.html" class="navbar-brand">
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
         </a>
@@ -1112,9 +1116,9 @@
     </section>
 
     <footer>
-        <div class="footer-brand">
+        <a href="#top" class="footer-brand">
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
-        </div>
+        </a>
         <div class="footer-badges">
             <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="store-badge" aria-label="Download on the App Store">
                 <img class="badge-en" src="badge_app_store_en.svg" alt="Download on the App Store">
