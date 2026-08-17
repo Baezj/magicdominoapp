@@ -235,7 +235,11 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
+            text-decoration: none;
+            transition: color 0.2s;
         }
+        .footer-brand:hover { color: var(--accent); }
+        .footer-brand:hover .brand-icon { transform: rotate(-6deg) scale(1.05); }
         .footer-links {
             display: flex;
             justify-content: center;
@@ -418,9 +422,9 @@
     </div>
 
     <footer>
-        <div class="footer-brand">
+        <a href="index.html" class="footer-brand">
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
-        </div>
+        </a>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="privacy.html">Privacy Policy</a>
