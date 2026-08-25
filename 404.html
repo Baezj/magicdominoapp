@@ -227,12 +227,21 @@
         <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
 
         <h1>You've been invited</h1>
-        <p class="tagline">Follow the game live</p>
+
+        <!-- ⚠️ FILLED IN BY SCRIPT AFTER ASKING WHAT THE CODE ACTUALLY IS.
+             The same codes cover a LIVE room and a TRANSFERRED game, and this page
+             is static, so a hardcoded "Follow the game live" is a coin flip that
+             lies half the time once Transfer Game ships. It also can't know whether
+             a live room from yesterday is still running.
+
+             Starts with wording true of BOTH, so the page reads correctly even if
+             the lookup is slow, blocked, or fails entirely. -->
+        <p class="tagline" id="tagline">Someone shared a game with you</p>
 
         <!-- They may never have heard of the app. One line, plain language. -->
-        <p class="what">
-            Magic Domino keeps score for dominoes. Get the free app to watch this
-            game from your own phone.
+        <p class="what" id="what">
+            Magic Domino keeps score for dominoes. Get the free app to open this
+            on your own phone.
         </p>
 
         <div class="download-buttons">
@@ -281,6 +290,7 @@
             document.getElementById("code").textContent = last;
             document.getElementById("shared").style.display = "block";
             document.title = last + " · Magic Domino™";
+            describeCode(last);
 
             var btn = document.getElementById("copy");
             btn.addEventListener("click", function () {
@@ -302,6 +312,40 @@
         // Matches the homepage's Spanish badge swap.
         if ((navigator.language || "").toLowerCase().indexOf("es") === 0) {
             document.documentElement.lang = "es";
+        }
+
+        /// Asks the relay what this code is, and says so.
+        ///
+        /// ⚠️ FAILS SILENTLY AND ON PURPOSE. If the request is slow, blocked, or the
+        ///    relay is down, the page keeps the neutral wording it loaded with —
+        ///    which is true of every kind of code. Never show an error here: the
+        ///    reader can't act on it, and the download buttons work regardless.
+        function describeCode(code) {
+            fetch("https://magic-domino-relay.juanbaez93.workers.dev/code/" + code)
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (info) {
+                    if (!info) return;
+
+                    var tagline = document.getElementById("tagline");
+                    var what    = document.getElementById("what");
+
+                    if (info.kind === "live") {
+                        tagline.textContent = info.mode === "tournament"
+                            ? "Follow the tournament live"
+                            : "Follow the game live";
+                        what.textContent =
+                            "Magic Domino keeps score for dominoes. Get the free app to "
+                            + "watch from your own phone.";
+                    } else if (info.kind === "transfer") {
+                        tagline.textContent = info.mode === "tournament"
+                            ? "A tournament is waiting for you"
+                            : "A game is waiting for you";
+                        what.textContent =
+                            "Magic Domino keeps score for dominoes. Get the free app to "
+                            + "open it on your own phone.";
+                    }
+                })
+                .catch(function () { /* keep the neutral wording */ });
         }
     })();
 </script>
