@@ -91,30 +91,34 @@
         margin-bottom: 1.1rem;
     }
 
-    .eyebrow {
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.5rem;
-    }
-
+    /* ⚠️ THE INVITATION IS THE NEWS, so it gets the headline. An earlier draft made
+       this a small blue eyebrow and gave the big serif to a description of the
+       app — which buried the one thing the reader needs in the first second:
+       somebody sent this to them on purpose. */
     h1 {
         font-family: 'Fraunces', serif;
-        /* Kept short so it doesn't strand a word on its own line. */
-        font-size: clamp(1.7rem, 6vw, 2.35rem);
+        /* Short on purpose so it never strands a word on its own line. */
+        font-size: clamp(2.1rem, 8.5vw, 3rem);
         font-weight: 600;
         font-variation-settings: "opsz" 144;
-        line-height: 1.12;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.7rem;
+        line-height: 1.06;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.45rem;
         text-wrap: balance;
+    }
+
+    /* Same italic-serif tagline pattern as the homepage. */
+    .tagline {
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: clamp(1.15rem, 4.5vw, 1.45rem);
+        color: var(--accent);
+        margin-bottom: 1rem;
     }
 
     .what {
         color: var(--ink-soft);
-        font-size: 1rem;
+        font-size: 0.98rem;
         margin-bottom: 1.6rem;
         text-wrap: balance;
     }
@@ -222,8 +226,8 @@
     <div id="shared">
         <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
 
-        <div class="eyebrow">You've been invited</div>
-        <h1>Follow the game live</h1>
+        <h1>You've been invited</h1>
+        <p class="tagline">Follow the game live</p>
 
         <!-- They may never have heard of the app. One line, plain language. -->
         <p class="what">
@@ -255,7 +259,7 @@
     <div id="missing">
         <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
         <h1>Page not found</h1>
-        <p class="what">That page doesn't exist.</p>
+        <p class="tagline">That page doesn't exist.</p>
         <p class="hint"><a class="plain" href="/">Go to Magic Domino</a></p>
     </div>
 
