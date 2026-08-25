@@ -1,104 +1,274 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Magic Domino</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Domino™</title>
+<link rel="icon" type="image/png" href="/app-icon.png">
+<link rel="apple-touch-icon" href="/app-icon.png">
 
 <!--
   ============================================================================
   404 — AND THE PAGE BEHIND A SHARED CODE
   ============================================================================
-  ⚠️ THIS FILE HAS TO BE THE ROOT 404, and that is a constraint of GitHub Pages
-     rather than a choice. A share link looks like /j/X5JJVP, and Pages serves
-     only real files — there is no rewrite rule and no per-folder fallback. It
-     looks for that path, finds nothing, and serves the root 404.html. So the
-     404 page IS the landing page.
+  ⚠️ THIS HAS TO BE THE ROOT 404, and that's a constraint of GitHub Pages rather
+     than a choice. A share link looks like /j/X5JJVP, and Pages serves only
+     real files — no rewrite rules, no per-folder fallback. It looks for that
+     path, finds nothing, and serves this. So the 404 page IS the landing page.
 
-  ✅ WITH THE APP INSTALLED, NOBODY EVER SEES THIS. iOS reads the association
-     file at /.well-known/apple-app-site-association and opens Magic Domino
-     directly. This is what someone WITHOUT the app gets — and without it a
-     scanned QR is a dead end for exactly the person you most want to reach.
+  ✅ WITH THE APP INSTALLED, NOBODY EVER SEES THIS. iOS reads
+     /.well-known/apple-app-site-association and opens Magic Domino straight to
+     the code. This is what someone WITHOUT the app gets — and without it a
+     scanned QR is a dead end for exactly the person you most want to reach,
+     which is why the store badges are the main thing on the page.
 
-  It still behaves as a normal 404 for any other missing page, so it doesn't
-  cost the site anything.
+  Styling deliberately mirrors index.html: same fonts, same colour variables,
+  same 54px badges with the same Spanish swap. A page reached by scanning a
+  friend's screen shouldn't look like it belongs to a different product.
   ============================================================================
 -->
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 22px;
-    padding: 32px;
-    background: #0b0d10;
-    color: #f2f4f7;
-    text-align: center;
-    font: 400 17px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-  h1 { font-size: 22px; font-weight: 700; margin: 0; }
-  p  { margin: 0; color: #9aa4b2; max-width: 32ch; }
-  .code {
-    font: 700 44px/1 ui-rounded, -apple-system, sans-serif;
-    letter-spacing: 6px;
-    color: #5b9bd5;
-    padding: 18px 26px;
-    border-radius: 18px;
-    background: #14181d;
-  }
-  a.btn {
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 15px 30px;
-    border-radius: 999px;
-    background: #5b9bd5;
-    color: #0b0d10;
-  }
-  small { color: #6b7480; }
-  /* Whichever branch doesn't apply is removed by script below. */
-  #shared, #missing { display: none; flex-direction: column; align-items: center; gap: 22px; }
+    :root {
+        --ink: #0f1a3a;
+        --ink-soft: #2d3a5f;
+        --cream: #f7f9fc;
+        --paper: #ffffff;
+        --accent: #3d95ef;
+        --border: #dbe6f2;
+        --muted: #6b7a99;
+        --shadow-md: 0 4px 12px rgba(15, 26, 58, 0.08), 0 12px 32px rgba(15, 26, 58, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.25rem;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .dot-bg {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.5px);
+        background-size: 32px 32px;
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .wrap {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 30rem;
+        width: 100%;
+    }
+
+    .app-icon {
+        width: 88px;
+        height: 88px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 1.5rem;
+    }
+
+    h1 {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+        font-weight: 600;
+        font-variation-settings: "opsz" 144;
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.6rem;
+    }
+
+    .tagline {
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: var(--ink-soft);
+        margin-bottom: 1.75rem;
+    }
+
+    .code-card {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow-md);
+        padding: 1.5rem 1.25rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .code-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+    }
+
+    .code {
+        font-family: 'Inter', monospace;
+        font-size: clamp(2rem, 8vw, 2.75rem);
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--accent);
+        /* The trailing letter-space would otherwise push it off-centre. */
+        text-indent: 0.18em;
+    }
+
+    .steps {
+        color: var(--ink-soft);
+        font-size: 0.98rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .download-buttons {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    .store-badge {
+        display: inline-block;
+        position: relative;
+        transition: transform 0.2s, filter 0.2s;
+    }
+    .store-badge img {
+        display: block;
+        height: 54px;
+        width: auto;
+    }
+    a.store-badge:hover {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 8px 18px rgba(15, 26, 58, 0.22));
+    }
+    a.store-badge:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 12px;
+    }
+
+    /* Same language swap as the homepage. */
+    .store-badge img.badge-es { display: none; }
+    :lang(es) .store-badge img.badge-en { display: none; }
+    :lang(es) .store-badge img.badge-es { display: block; }
+
+    .fineprint {
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+
+    a.plain {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a.plain:hover { text-decoration: underline; }
+
+    /* Whichever branch doesn't apply is removed by the script below. */
+    #shared, #missing { display: none; }
+
+    @media (max-width: 480px) {
+        .download-buttons { gap: 0.5rem; flex-wrap: nowrap; }
+        .store-badge img { height: 46px; }
+    }
 </style>
 </head>
 <body>
+<div class="dot-bg"></div>
 
-<div id="shared">
-  <h1>Someone shared a game with you</h1>
-  <div class="code" id="code"></div>
-  <p>Open Magic Domino, tap Share, then Enter code.</p>
-  <a class="btn" href="https://apps.apple.com/app/id6747228055">Get Magic Domino</a>
-  <small>Free to join. No account needed.</small>
-</div>
+<div class="wrap">
 
-<div id="missing">
-  <h1>Page not found</h1>
-  <p>That page doesn't exist.</p>
-  <a class="btn" href="/">Go to Magic Domino</a>
+    <div id="shared">
+        <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
+        <h1>Someone shared a game with you</h1>
+        <p class="tagline">Less math, more magic.</p>
+
+        <div class="code-card">
+            <div class="code-label">Your code</div>
+            <div class="code" id="code"></div>
+        </div>
+
+        <p class="steps">Open Magic Domino, tap <strong>Share</strong>, then <strong>Enter code</strong>.</p>
+
+        <div class="download-buttons">
+            <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="store-badge" aria-label="Download on the App Store">
+                <img class="badge-en" src="/badge_app_store_en.svg" alt="Download on the App Store">
+                <img class="badge-es" src="/badge_app_store_es.svg" alt="Descárgalo en el App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.magicdomino.android" class="store-badge" aria-label="Get it on Google Play">
+                <img class="badge-en" src="/badge_google_play_en.svg" alt="Get it on Google Play">
+                <img class="badge-es" src="/badge_google_play_es.svg" alt="Disponible en Google Play">
+            </a>
+        </div>
+
+        <p class="fineprint">Free to join. No account needed.</p>
+    </div>
+
+    <div id="missing">
+        <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
+        <h1>Page not found</h1>
+        <p class="tagline">That page doesn't exist.</p>
+        <p class="steps"><a class="plain" href="/">Go to Magic Domino</a></p>
+
+        <div class="download-buttons">
+            <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="store-badge" aria-label="Download on the App Store">
+                <img class="badge-en" src="/badge_app_store_en.svg" alt="Download on the App Store">
+                <img class="badge-es" src="/badge_app_store_es.svg" alt="Descárgalo en el App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.magicdomino.android" class="store-badge" aria-label="Get it on Google Play">
+                <img class="badge-en" src="/badge_google_play_en.svg" alt="Get it on Google Play">
+                <img class="badge-es" src="/badge_google_play_es.svg" alt="Disponible en Google Play">
+            </a>
+        </div>
+    </div>
+
 </div>
 
 <script>
-  (function () {
-    var path  = window.location.pathname;
-    var parts = path.split("/").filter(Boolean);
-    var last  = (parts[parts.length - 1] || "").toUpperCase();
+    (function () {
+        // ⚠️ ABSOLUTE PATHS ON EVERY ASSET ABOVE. This page is served for
+        //    /j/X5JJVP, so a relative src would resolve to /j/app-icon.png and
+        //    silently break — on the share page, which is the one that matters.
+        var parts = window.location.pathname.split("/").filter(Boolean);
+        var last  = (parts[parts.length - 1] || "").toUpperCase();
 
-    // Only treat it as a share when the path really is /j/SOMETHING and that
-    // something looks like a code — never echo back whatever was in the URL.
-    var isShare = parts[0] === "j" && /^[A-Z0-9]{4,8}$/.test(last);
+        // Only treat it as a share when the path really is /j/SOMETHING and that
+        // something looks like a code — never echo back whatever was in the URL.
+        var isShare = parts[0] === "j" && /^[A-Z0-9]{4,8}$/.test(last);
 
-    if (isShare) {
-      document.getElementById("code").textContent = last;
-      document.getElementById("shared").style.display = "flex";
-    } else {
-      document.getElementById("missing").style.display = "flex";
-    }
-  })();
+        if (isShare) {
+            document.getElementById("code").textContent = last;
+            document.getElementById("shared").style.display = "block";
+            document.title = last + " · Magic Domino™";
+        } else {
+            document.getElementById("missing").style.display = "block";
+        }
+
+        // Matches the homepage's Spanish badge swap.
+        if ((navigator.language || "").toLowerCase().indexOf("es") === 0) {
+            document.documentElement.lang = "es";
+        }
+    })();
 </script>
 </body>
 </html>
