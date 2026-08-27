@@ -292,12 +292,12 @@
     <div class="page-hero">
         <p class="page-eyebrow">Legal</p>
         <h1>Privacy <em>Policy</em></h1>
-        <p class="last-updated">Last updated: June 5, 2026</p>
+        <p class="last-updated">Last updated: August 26, 2026</p>
     </div>
 
     <div class="content">
         <p class="lead">
-            Privacy is important to us, and we've designed Magic Domino with your data security in mind. <strong>Magic Domino™ does not collect, store, or transmit any personal information.</strong> Your game data stays on your device, and we have no access to it.
+            Privacy is important to us, and we've designed Magic Domino with your data security in mind. <strong>Magic Domino™ has no accounts, and we never ask for your name, email, or contact details.</strong> Your games are stored on your device. The one exception is Live Share &amp; Transfer: if <em>you</em> choose to share a game, its contents are sent to the devices you share it with — see <a href="#live-share">Live Share &amp; Transfer</a> below.
         </p>
 
         <h2>Information We Collect</h2>
@@ -308,22 +308,29 @@
             <li><strong>Camera Access:</strong> Used only for AI score counting. All image processing happens locally on your device in real-time. Photos are never saved, stored, or uploaded anywhere.</li>
             <li><strong>Photo Library Access (Premium, iOS 26+ and Android):</strong> Premium users on iOS 26 or later and on Android can select photos from their library to customize the scoreboard background. Selected photos are compressed, stored locally on your device, and never uploaded to our servers. We do not have access to your photo library or the photos you select.</li>
             <li><strong>Widgets &amp; Live Activity (Premium, iOS 26+):</strong> Premium users on iOS 26 or later can display game scores on their home screen, lock screen, and Dynamic Island via widgets and Live Activity. You can also add Quick Points and undo scores directly from your Lock Screen. All widget and Live Activity data is read from and written to your locally stored game data and is never transmitted to our servers. Widgets are not yet available on Android and are planned for a future update.</li>
+            <li id="live-share"><strong>Live Share &amp; Transfer (Premium, iOS 26+):</strong> These features are entirely optional and do nothing until you start them. When you share a game live, or send a copy to another device, the game's contents — team names, scores, round history, tournament titles and brackets, elapsed time, and the display name shown to viewers — are transmitted so the other devices can show them. Whenever both devices are on the same Wi-Fi network, this happens directly between them over your local network and never reaches us. When a direct connection isn't possible, the data is relayed through our server at <code>live.magicdominoapp.com</code> so it can reach a device somewhere else. Anyone holding the share code can view the game, so only give the code to people you want watching. A live room exists only while you keep it open, and a transfer code is single-use and expires. We don't use game content for anything other than delivering it to the devices you're sharing with, and we don't combine it with anything else. Team names are free text you type yourself — if you'd rather not send real names, use nicknames. Like any internet service, our relay receives the IP address of connecting devices as an unavoidable part of how network connections work. Live Share is not yet available on Android and is planned for a future update.</li>
+            <li><strong>Local Network Access (iOS):</strong> Live Share uses Bonjour to find other devices on the same Wi-Fi network, which is why iOS asks for Local Network permission the first time you use it. This is used only to discover and connect to devices you are actively sharing with. You can decline it — Live Share will then use the relay instead.</li>
+            <li><strong>Name Styles (Premium, iOS 26+):</strong> Custom fonts, colors, and effects you apply to team names are stored locally on your device as part of your app settings. They are never uploaded to our servers. Name Styles are not yet available on Android and are planned for a future update.</li>
+            <li><strong>Game Timer (iOS 26+):</strong> Off by default. When enabled, elapsed time is calculated on your device from timestamps already saved with your games. Nothing extra is collected, and nothing is transmitted — though elapsed time does appear on share cards and in shared games, as part of that game's contents.</li>
             <li><strong>Purchase Information:</strong> All subscriptions and purchases are managed securely by Apple through the App Store (on iOS) or by Google through Google Play (on Android). We do not store or have access to your payment details.</li>
             <li><strong>Advertising (Free Users Only):</strong> Free version users may see ads served through Google AdMob, with Unity Ads as a secondary network via AdMob mediation. These networks collect certain device information for ad personalization. Premium users have an ad-free experience with no ad tracking.</li>
         </ul>
 
         <h2>How We Use Your Information</h2>
-        <p>Since we don't collect personal information, there's nothing to use! Your data stays on your device.</p>
+        <p>We have no accounts and no analytics, so there is very little to use. Almost everything stays on your device.</p>
         <ul>
             <li>Game data remains on your device to provide score tracking and history</li>
             <li>Camera is used in real-time for AI counting only</li>
             <li>Selected background photos are stored locally on your device only (iOS 26+ and Android)</li>
             <li>Widget and Live Activity data is read from and written to your locally stored game data (iOS 26+)</li>
+            <li>Game contents are transmitted only when you start Live Share or Transfer, and only to the devices you share with (iOS 26+)</li>
+            <li>Name Styles and Game Timer settings stay on your device (iOS 26+)</li>
             <li>iCloud sync (if enabled by you on iOS) uses Apple's secure infrastructure</li>
         </ul>
 
         <h2>Data Storage and Security</h2>
-        <p>All your game data, custom background photos, and app settings are stored locally on your device in the app's secure storage. On iOS, if you enable iCloud sync, data is stored in your personal iCloud account using Apple's secure infrastructure. We do not have access to your iCloud data or any files stored on your device.</p>
+        <p>All your game data, custom background photos, name styles, and app settings are stored locally on your device in the app's secure storage. On iOS, if you enable iCloud sync, data is stored in your personal iCloud account using Apple's secure infrastructure. We do not have access to your iCloud data or any files stored on your device.</p>
+        <p>Live Share and Transfer are the exception, and only while you are using them. Traffic to and from our relay is encrypted in transit (HTTPS and secure WebSockets). A live room holds the game only for as long as the session is open; a transfer payload is held only until it is claimed or expires. Neither is tied to an account, because there are no accounts. If you never use Live Share or Transfer, none of your game data reaches our servers at any point.</p>
 
         <h2>Third-Party Services</h2>
         <p>Magic Domino integrates with the following services:</p>
@@ -332,6 +339,7 @@
             <li><strong>Google Play (Android):</strong> Handles all purchases and subscriptions securely on Android devices</li>
             <li><strong>RevenueCat:</strong> We use RevenueCat to manage and validate subscriptions and purchases and to deliver Premium access consistently across iOS and Android. When you make a purchase, RevenueCat receives purchase and subscription details (such as the product purchased, transaction receipt, and platform) along with an anonymous app-generated identifier. RevenueCat does <strong>not</strong> receive your name, email, or payment card details — those remain with Apple or Google. For more information, see <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">RevenueCat's Privacy Policy</a>.</li>
             <li><strong>Apple iCloud (iOS):</strong> Optional sync feature for Premium users — data stays in your personal iCloud account</li>
+            <li><strong>Magic Domino Live Relay (<code>live.magicdominoapp.com</code>):</strong> Our own relay, operated by us and not a third party. It passes shared game contents between devices that cannot reach each other directly. It is used only during Live Share and Transfer sessions you start yourself.</li>
             <li>
                 <strong>Google AdMob (Free Users Only):</strong> We use Google AdMob as our primary advertising network to serve ads to free users. AdMob may collect and use the following information:
                 <ul class="nested-list">
@@ -361,6 +369,10 @@
             <li>Remove custom background photos at any time from the background settings (iOS 26+ and Android)</li>
             <li>Enable or disable iCloud sync at your preference (iOS)</li>
             <li>Enable or disable widgets and Live Activity at your preference (iOS 26+)</li>
+            <li>Choose whether to use Live Share or Transfer at all — nothing is transmitted unless you start a session (iOS 26+)</li>
+            <li>End a live session at any time, which closes the room and stops all sharing (iOS 26+)</li>
+            <li>Use nicknames instead of real names for teams if you plan to share games</li>
+            <li>Decline Local Network permission and still use Live Share via the relay (iOS)</li>
             <li>Opt out of personalized ads by limiting ad tracking in your device settings (on iOS: Settings → Privacy &amp; Security → Tracking; on Android: Settings → Google → Ads → Delete advertising ID)</li>
             <li>Uninstall the app to completely remove all locally stored data from your device</li>
         </ul>
