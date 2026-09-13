@@ -107,6 +107,21 @@
             #backToTournament { font-size: 0.88rem; gap: 0.55rem; }
         }
 
+        /* ===== Right-to-left (Arabic, Urdu) ===================================
+           i18n.js sets dir="rtl" for ar/ur. This page is overwhelmingly centred
+           flexbox, which mirrors for free — these are the few places that state a
+           physical side and would otherwise sit on the wrong one. */
+        [dir="rtl"] .premium-features { text-align: right; }
+        [dir="rtl"] .store-badge.coming-soon .badge,
+        [dir="rtl"] .store-btn.coming-soon .badge { right: auto; left: 8px; }
+        [dir="rtl"] .brand-tm { margin-left: 0; margin-right: 0.05em; }
+        [dir="rtl"] .navbar-brand .logo { margin-left: 0.5rem; margin-right: 0; }
+        /* The room code is Latin characters and reads left-to-right even inside an
+           RTL page — without this the caret and the typed code fight each other. */
+        [dir="rtl"] #watchCode { direction: ltr; text-align: center; }
+        /* The pill's arrow points back the other way when the page does. */
+        [dir="rtl"] #backToTournament .btt-arrow { transform: scaleX(-1); }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html { scroll-behavior: smooth; }
@@ -1028,19 +1043,20 @@
             color: var(--muted);
         }
     </style>
+    <script src="/i18n.js"></script>
 </head>
 <body>
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
         </a>
-        <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu" data-i18n-attr="aria-label:a11y.menu">☰</button>
         <div class="navbar-links" id="navbarLinks">
-            <a href="index.html">Home</a>
-            <a href="/tv/" style="font-weight:700;">Watch Live</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
-            <a href="support.html">Support</a>
+            <a href="index.html" data-i18n="nav.home">Home</a>
+            <a href="/tv/" style="font-weight:700;" data-i18n="nav.watch">Watch Live</a>
+            <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+            <a href="terms.html" data-i18n="nav.terms">Terms</a>
+            <a href="support.html" data-i18n="nav.support">Support</a>
         </div>
     </nav>
 
@@ -1069,10 +1085,10 @@
             <div class="logo-wrap">
                 <img src="app-icon.png" alt="Magic Domino Icon" class="logo">
             </div>
-            <span class="eyebrow"><span class="dot"></span> Now with AI Score Counting</span>
-            <h1>Less math.<br>More <em>magic</em>.</h1>
-            <p class="tagline">The ultimate dominoes score keeper.</p>
-            <p class="hero-desc">
+            <span class="eyebrow"><span class="dot"></span> <span data-i18n="hero.badge">Now with AI Score Counting</span></span>
+            <h1 data-i18n-html="hero.title">Less math.<br>More <em>magic</em>.</h1>
+            <p class="tagline" data-i18n="hero.sub1">The ultimate dominoes score keeper.</p>
+            <p class="hero-desc" data-i18n="hero.sub2">
                 Point your camera, AI counts the score, and you get back to the game.
             </p>
 
@@ -1089,162 +1105,162 @@
             </div>
 
             <div class="hero-meta">
-                <span>★ Family-friendly</span>
+                <span data-i18n="hero.meta1">★ Family-friendly</span>
                 <span>·</span>
-                <span>14-day free trial</span>
+                <span data-i18n="hero.meta2">14-day free trial</span>
                 <span>·</span>
-                <span>iPhone, iPad & Android</span>
+                <span data-i18n="hero.meta3">iPhone, iPad &amp; Android</span>
             </div>
         </div>
     </section>
 
     <section class="features">
         <div class="section-header">
-            <p class="section-eyebrow">What's inside</p>
-            <h2 class="section-title">Built for <em>real</em> game nights.</h2>
+            <p class="section-eyebrow" data-i18n="feat.eyebrow">What's inside</p>
+            <h2 class="section-title" data-i18n-html="feat.title">Built for <em>real</em> game nights.</h2>
         </div>
         <div class="features-grid">
             <div class="feature-card">
-                <span class="feature-num">01 / Vision</span>
+                <span class="feature-num" data-i18n="f1.kicker">01 / Vision</span>
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                 </div>
-                <h3 class="feature-title">AI Score Counting</h3>
-                <p class="feature-description">Point your camera at your dominoes and AI instantly detects and counts the score in real-time. No manual counting, no disputes.</p>
+                <h3 class="feature-title" data-i18n="f1.title">AI Score Counting</h3>
+                <p class="feature-description" data-i18n="f1.desc">Point your camera at your dominoes and AI instantly detects and counts the score in real-time. No manual counting, no disputes.</p>
             </div>
 
             <div class="feature-card">
-                <span class="feature-num">02 / Brackets</span>
+                <span class="feature-num" data-i18n="f2.kicker">02 / Brackets</span>
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
                 </div>
-                <h3 class="feature-title">Tournament Mode</h3>
-                <p class="feature-description">Organize brackets for 2 to 32 teams — single elimination, a best-of series, or double elimination. Odd numbers are welcome; byes are worked out for you.</p>
+                <h3 class="feature-title" data-i18n="f2.title">Tournament Mode</h3>
+                <p class="feature-description" data-i18n="f2.desc">Organize brackets for 2 to 32 teams — single elimination, a best-of series, or double elimination. Odd numbers are welcome; byes are worked out for you.</p>
             </div>
 
             <div class="feature-card">
-                <span class="feature-num">03 / Style</span>
+                <span class="feature-num" data-i18n="f3.kicker">03 / Style</span>
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
                 </div>
-                <h3 class="feature-title">Beautiful Themes</h3>
-                <p class="feature-description">Stunning themes, custom backgrounds, and customizable animations. Style team names with fonts, colors, and effects — Name Styles on iOS 26+.</p>
+                <h3 class="feature-title" data-i18n="f3.title">Beautiful Themes</h3>
+                <p class="feature-description" data-i18n="f3.desc">Stunning themes, custom backgrounds, and customizable animations. Style team names with fonts, colors, and effects — Name Styles on iOS 26+.</p>
             </div>
 
             <div class="feature-card">
-                <span class="feature-num">04 / Sync</span>
+                <span class="feature-num" data-i18n="f4.kicker">04 / Sync</span>
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
                 </div>
-                <h3 class="feature-title">iCloud Sync</h3>
-                <p class="feature-description">Keep your game history synced across all your Apple devices seamlessly and securely.</p>
-                <span class="platform-tag">iOS only · Android sync coming soon</span>
+                <h3 class="feature-title" data-i18n="f4.title">iCloud Sync</h3>
+                <p class="feature-description" data-i18n="f4.desc">Keep your game history synced across all your Apple devices seamlessly and securely.</p>
+                <span class="platform-tag" data-i18n="f4.note">iOS only · Android sync coming soon</span>
             </div>
 
             <div class="feature-card">
-                <span class="feature-num">05 / History</span>
+                <span class="feature-num" data-i18n="f5.kicker">05 / History</span>
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
                 </div>
-                <h3 class="feature-title">Game History</h3>
-                <p class="feature-description">Track every game with detailed statistics. Review past matches, see how long each one ran with the optional Game Timer (free on iOS 26+ and Android), and watch your rivalries unfold over time.</p>
+                <h3 class="feature-title" data-i18n="f5.title">Game History</h3>
+                <p class="feature-description" data-i18n="f5.desc">Track every game with detailed statistics. Review past matches, see how long each one ran with the optional Game Timer (free on iOS 26+ and Android), and watch your rivalries unfold over time.</p>
             </div>
 
             <div class="feature-card">
-                <span class="feature-num">06 / Share</span>
+                <span class="feature-num" data-i18n="f6.kicker">06 / Share</span>
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                 </div>
-                <h3 class="feature-title">Live Share &amp; Join</h3>
-                <p class="feature-description">Anyone can follow the score live on their own phone — same table or across town. Send a copy to another device, or join a friend's game with a code. iOS 26+ and Android — hosting needs Premium, joining is free.</p>
+                <h3 class="feature-title" data-i18n="f6.title">Live Share &amp; Join</h3>
+                <p class="feature-description" data-i18n="f6.desc">Anyone can follow the score live on their own phone — same table or across town. Send a copy to another device, or join a friend's game with a code. iOS 26+ and Android — hosting needs Premium, joining is free.</p>
             </div>
         </div>
     </section>
 
     <section class="showcase">
         <div class="section-header">
-            <p class="section-eyebrow">See it in action</p>
-            <h2 class="section-title">Your game, <em>beautifully</em> kept.</h2>
+            <p class="section-eyebrow" data-i18n="shots.eyebrow">See it in action</p>
+            <h2 class="section-title" data-i18n-html="shots.title">Your game, <em>beautifully</em> kept.</h2>
         </div>
         <div class="showcase-wrap">
-            <button class="scroll-arrow scroll-arrow-left" aria-label="Previous screenshots" onclick="scrollShots(-1)">‹</button>
+            <button class="scroll-arrow scroll-arrow-left" aria-label="Previous screenshots" data-i18n-attr="aria-label:a11y.prevShots" onclick="scrollShots(-1)">‹</button>
             <div class="showcase-scroll" id="showcaseScroll">
             <div class="shot">
                 <div class="shot-frame">
                     <!-- Replace src with your real screenshot, e.g. shot-counter.png -->
-                    <img src="shot-1.png" alt="AI score counting with the camera" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
-                    <span class="placeholder" style="display:none;">Screenshot 1<br>(AI Counting)</span>
+                    <img src="shot-1.png" alt="AI score counting with the camera" data-i18n-attr="alt:alt.shot1" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;" data-i18n="alt.shot1">Screenshot 1</span>
                 </div>
             </div>
             <div class="shot">
                 <div class="shot-frame">
-                    <img src="shot-2.png" alt="Scoreboard view" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
-                    <span class="placeholder" style="display:none;">Screenshot 2<br>(Scoreboard)</span>
+                    <img src="shot-2.png" alt="Scoreboard view" data-i18n-attr="alt:alt.shot2" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;" data-i18n="alt.shot2">Screenshot 2</span>
                 </div>
             </div>
             <div class="shot">
                 <div class="shot-frame">
-                    <img src="shot-3.png" alt="Tournament bracket" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
-                    <span class="placeholder" style="display:none;">Screenshot 3<br>(Tournaments)</span>
+                    <img src="shot-3.png" alt="Tournament bracket" data-i18n-attr="alt:alt.shot3" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;" data-i18n="alt.shot3">Screenshot 3</span>
                 </div>
             </div>
             <div class="shot">
                 <div class="shot-frame">
-                    <img src="shot-4.png" alt="Game history" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
-                    <span class="placeholder" style="display:none;">Screenshot 4<br>(History)</span>
+                    <img src="shot-4.png" alt="Game history" data-i18n-attr="alt:alt.shot4" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;" data-i18n="alt.shot4">Screenshot 4</span>
                 </div>
             </div>
             <div class="shot">
                 <div class="shot-frame">
-                    <img src="shot-5.png" alt="Magic Domino screenshot" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
-                    <span class="placeholder" style="display:none;">Screenshot 5</span>
+                    <img src="shot-5.png" alt="Magic Domino screenshot" data-i18n-attr="alt:alt.shot" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;" data-i18n="alt.shot">Screenshot 5</span>
                 </div>
             </div>
             <div class="shot">
                 <div class="shot-frame">
-                    <img src="shot-6.png" alt="Magic Domino screenshot" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
-                    <span class="placeholder" style="display:none;">Screenshot 6</span>
+                    <img src="shot-6.png" alt="Magic Domino screenshot" data-i18n-attr="alt:alt.shot" onerror="this.style.display='none';this.parentNode.querySelector('.placeholder').style.display='block';">
+                    <span class="placeholder" style="display:none;" data-i18n="alt.shot">Screenshot 6</span>
                 </div>
             </div>
             </div>
-            <button class="scroll-arrow scroll-arrow-right" aria-label="More screenshots" onclick="scrollShots(1)">›</button>
+            <button class="scroll-arrow scroll-arrow-right" aria-label="More screenshots" data-i18n-attr="aria-label:a11y.nextShots" onclick="scrollShots(1)">›</button>
         </div>
     </section>
 
     <section class="watch" id="watch">
         <div class="section-header">
-            <p class="section-eyebrow">Live on any screen</p>
-            <h2 class="section-title">Watching a tournament? <em>Enter</em> the code.</h2>
+            <p class="section-eyebrow" data-i18n="watch.eyebrow">Live on any screen</p>
+            <h2 class="section-title" data-i18n-html="watch.title">Watching a tournament? <em>Enter</em> the code.</h2>
         </div>
         <div class="watch-card">
             <p>Tournament organizers share a 6-character room code. Enter it here — or on any TV's browser — and follow the bracket live, no app needed.</p>
             <div class="watch-form">
                 <input class="watch-input" id="watchCode" maxlength="12" autocomplete="off"
                        autocapitalize="characters" spellcheck="false" placeholder="A632GJ"
-                       aria-label="Room code">
-                <button class="watch-btn" id="watchGo" disabled onclick="watchLive()">Watch</button>
+                       aria-label="Room code" data-i18n-attr="aria-label:a11y.roomCode">
+                <button class="watch-btn" id="watchGo" disabled onclick="watchLive()" data-i18n="watch.btn">Watch</button>
             </div>
-            <p class="watch-note">In the app it's the code under "Sharing live" — scan the QR there to join on a phone instead.</p>
+            <p class="watch-note" data-i18n="watch.hint">In the app it's the code under "Sharing live" — scan the QR there to join on a phone instead.</p>
         </div>
     </section>
 
     <section class="premium">
         <div class="dot-bg"></div>
         <div class="premium-content">
-            <p class="premium-badge">Premium</p>
-            <h2 class="premium-title">Unlock the <em>full</em> experience.</h2>
-            <p class="premium-sub">Try Premium free for 14 days.</p>
+            <p class="premium-badge" data-i18n="prem.eyebrow">Premium</p>
+            <h2 class="premium-title" data-i18n-html="prem.title">Unlock the <em>full</em> experience.</h2>
+            <p class="premium-sub" data-i18n="prem.sub">Try Premium free for 14 days.</p>
             <div class="premium-features">
-                <div class="premium-feature"><span class="check">✓</span> Unlimited AI Counting</div>
-                <div class="premium-feature"><span class="check">✓</span> Ad-Free Experience</div>
-                <div class="premium-feature"><span class="check">✓</span> All Themes & Animations</div>
-                <div class="premium-feature"><span class="check">✓</span> Tournament Mode</div>
-                <div class="premium-feature"><span class="check">✓</span> iCloud Sync <span class="plat">iOS only</span></div>
-                <div class="premium-feature"><span class="check">✓</span> Share Games</div>
-                <div class="premium-feature"><span class="check">✓</span> Widgets & Live Activity <span class="plat">iOS 26+</span></div>
-                <div class="premium-feature"><span class="check">✓</span> Custom Backgrounds <span class="plat">iOS 26+ & Android</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="prem.f1">Unlimited AI Counting</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="prem.f2">Ad-Free Experience</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="prem.f3">All Themes &amp; Animations</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="f2.title">Tournament Mode</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="f4.title">iCloud Sync</span> <span class="plat" data-i18n="tag.iosOnly">iOS only</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="prem.f6">Share Games</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="prem.f7">Widgets &amp; Live Activity</span> <span class="plat" data-i18n="tag.ios26">iOS 26+</span></div>
+                <div class="premium-feature"><span class="check">✓</span> <span data-i18n="prem.f8">Custom Backgrounds</span> <span class="plat" data-i18n="tag.ios26and">iOS 26+ &amp; Android</span></div>
             </div>
-            <p class="premium-note">Some Premium features are currently iPhone &amp; iPad exclusives — Android versions are on the way. All other Premium features are available on both platforms.</p>
+            <p class="premium-note" data-i18n="prem.note">Some Premium features are currently iPhone &amp; iPad exclusives — Android versions are on the way. All other Premium features are available on both platforms.</p>
         </div>
     </section>
 
@@ -1263,21 +1279,19 @@
             </a>
         </div>
         <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="/tv/">Watch Live</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <a href="support.html">Support</a>
+            <a href="index.html" data-i18n="nav.home">Home</a>
+            <a href="/tv/" data-i18n="nav.watch">Watch Live</a>
+            <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="footer.terms">Terms of Use</a>
+            <a href="support.html" data-i18n="nav.support">Support</a>
         </div>
-        <p class="copyright">© 2026 Magic Domino™. All rights reserved.</p>
+        <p class="copyright" data-i18n="footer.rights">© 2026 Magic Domino™. All rights reserved.</p>
     </footer>
 
     <script>
-        // Show Spanish store badges for Spanish-language browsers
-        // (activates the existing :lang(es) CSS rules)
-        if ((navigator.language || '').toLowerCase().startsWith('es')) {
-            document.documentElement.lang = 'es';
-        }
+        // NOTE: documentElement.lang is set by i18n.js for EVERY language now, which
+        // is what activates the existing :lang(es) store-badge rules. The old
+        // Spanish-only sniffer that used to live here was a subset of that.
 
         var watchInput = document.getElementById('watchCode');
         if (watchInput) {
@@ -1345,7 +1359,7 @@
     </script>
     <a id="backToTournament" href="#" rel="noopener">
         <span class="btt-arrow" aria-hidden="true">&#8592;</span>
-        <span class="btt-label">Back to tournament</span>
+        <span class="btt-label" data-i18n="btt.label">Back to tournament</span>
         <span class="btt-code" id="bttCode"></span>
     </a>
 
