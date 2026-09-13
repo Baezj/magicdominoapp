@@ -898,6 +898,18 @@
             transition: color 0.2s;
         }
         .footer-links a:hover { color: var(--accent); }
+        .lang-switch {
+            display: block;
+            margin: 0 auto 1.5rem;
+            font: inherit;
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            background: var(--paper);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.35rem 0.75rem;
+            cursor: pointer;
+        }
 
         .copyright {
             color: var(--muted);
@@ -1285,6 +1297,7 @@
             <a href="terms.html" data-i18n="footer.terms">Terms of Use</a>
             <a href="support.html" data-i18n="nav.support">Support</a>
         </div>
+        <select class="lang-switch" aria-label="Language" data-i18n-attr="aria-label:a11y.language" hidden></select>
         <p class="copyright" data-i18n="footer.rights">© 2026 Magic Domino™. All rights reserved.</p>
     </footer>
 
