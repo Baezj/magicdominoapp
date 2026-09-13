@@ -29,18 +29,12 @@
 //    one. Per-language pages with hreflang would be the real answer to that, and it is
 //    a different job from making the page readable.
 //
-// ── WHAT IS STILL MISSING (2026-09-13) ───────────────────────────────────────────
-// Localizing the site is being done page by page. Finished: index.html and
-// 404.html (both 100%), plus support.html's chrome and all 24 FAQ questions.
-//
-// STILL TO DO, in this order:
-//   1. support.html answers a14, a16..a23 (9 keys). The English text is in the
-//      page, keyed with data-i18n-html. The 15 answers already done are the
-//      pattern to copy. Run the two checks below after adding any.
-//      (Done so far: a0-a13, a15.)
-//   2. privacy.html — ~77 strings, no keys yet.
-//   3. terms.html  — ~105 strings, no keys yet. Add an "the English version
-//      governs" line when translating this one; it is binding text.
+// ── STATUS (2026-09-13): THE SITE IS FULLY LOCALIZED ─────────────────────────────
+// All five pages — index.html, 404.html, support.html, privacy.html and
+// terms.html — carry keys for every visible string, and every key in this table
+// has all 17 languages. terms.html additionally shows a visible notice that the
+// English version is authoritative and governs in case of discrepancy, because
+// these translations are assistant-written, not professionally reviewed.
 //
 // ⚠️ A MISSING KEY IS SAFE, NOT BROKEN. apply() skips any element whose key has
 //    no entry here, so it keeps the English that ships in the markup. That is why
