@@ -34,8 +34,10 @@
 // 404.html (both 100%), plus support.html's chrome and all 24 FAQ questions.
 //
 // STILL TO DO, in this order:
-//   1. support.html answers a13..a23 (11 keys). The English text is in the page,
-//      keyed with data-i18n-html. a0..a12 are done and are the pattern to copy.
+//   1. support.html answers a14, a16..a23 (9 keys). The English text is in the
+//      page, keyed with data-i18n-html. The 15 answers already done are the
+//      pattern to copy. Run the two checks below after adding any.
+//      (Done so far: a0-a13, a15.)
 //   2. privacy.html — ~77 strings, no keys yet.
 //   3. terms.html  — ~105 strings, no keys yet. Add an "the English version
 //      governs" line when translating this one; it is binding text.
