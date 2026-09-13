@@ -510,6 +510,24 @@
         sel.removeAttribute("hidden");
       }
       sel.value = lang;
+      // A <select> sizes itself to its LONGEST option ("Bahasa Indonesia"),
+      // leaving the closed control mostly empty for short names. Fit it to the
+      // selected option; runs on every apply(), so it re-fits after a switch.
+      try {
+        var cs = getComputedStyle(sel);
+        var probe = document.createElement("span");
+        probe.style.position = "absolute";
+        probe.style.visibility = "hidden";
+        probe.style.whiteSpace = "nowrap";
+        probe.style.fontFamily = cs.fontFamily;
+        probe.style.fontSize = cs.fontSize;
+        probe.style.fontWeight = cs.fontWeight;
+        probe.textContent = sel.options[sel.selectedIndex].textContent;
+        document.body.appendChild(probe);
+        // side padding plus the native dropdown arrow the control still draws
+        sel.style.width = (probe.offsetWidth + 48) + "px";
+        document.body.removeChild(probe);
+      } catch (e) {}
     }
 
     // Store badges: the stores' own localized artwork, English fallback.
