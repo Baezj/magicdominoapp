@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — Magic Domino™</title>
+    <title data-i18n="sup.pageTitle">Support — Magic Domino™</title>
     <link rel="icon" type="image/png" href="app-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,12 @@
             --border: #dbe6f2;
             --muted: #6b7a99;
         }
+
+        /* ===== Right-to-left (Arabic, Urdu) ===== */
+        [dir="rtl"] .faq-item summary { padding-right: 1.5rem; padding-left: 3rem; }
+        [dir="rtl"] .faq-item summary::after { right: auto; left: 1.25rem; }
+        [dir="rtl"] .faq-body, [dir="rtl"] .contact-card { text-align: right; }
+        [dir="rtl"] ul { padding-right: 1.25rem; padding-left: 0; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -353,6 +359,7 @@
             footer { padding: 2.5rem 1.25rem; }
         }
     </style>
+    <script src="/i18n.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -369,9 +376,9 @@
     </nav>
 
     <div class="page-hero">
-        <p class="page-eyebrow">Help Center</p>
-        <h1>How can we <em>help</em>?</h1>
-        <p class="intro">We typically respond within 24–48 hours.</p>
+        <p class="page-eyebrow" data-i18n="sup.eyebrow">Help Center</p>
+        <h1 data-i18n-html="sup.title">How can we <em>help</em>?</h1>
+        <p class="intro" data-i18n="sup.respond">We typically respond within 24–48 hours.</p>
     </div>
 
     <div class="content">
@@ -380,56 +387,56 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div class="contact-text">
-                <div class="label">Email Support</div>
+                <div class="label" data-i18n="sup.email">Email Support</div>
                 <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a>
             </div>
         </div>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2 data-i18n="sup.faq">Frequently Asked Questions</h2>
 
         <details class="faq-item">
-            <summary>How does AI score counting work?</summary>
-            <div class="faq-body">Point your camera at your dominoes using the camera icon in the app. Our AI will automatically detect and count the pips in real-time as the dominoes appear in view. Make sure the dominoes are clearly visible and well-lit for best results.</div>
+            <summary data-i18n="q0">How does AI score counting work?</summary>
+            <div class="faq-body" data-i18n-html="a0">Point your camera at your dominoes using the camera icon in the app. Our AI will automatically detect and count the pips in real-time as the dominoes appear in view. Make sure the dominoes are clearly visible and well-lit for best results.</div>
         </details>
 
         <details class="faq-item">
-            <summary>What's included in the free version?</summary>
-            <div class="faq-body">The free version includes basic score tracking for 2-4 players and limited themes. You get 3 free AI counting uses per game, and you can watch a short video to unlock 3 more whenever you need them — or upgrade to Premium for unlimited AI counting with no ads. You can play unlimited games!</div>
+            <summary data-i18n="q1">What's included in the free version?</summary>
+            <div class="faq-body" data-i18n-html="a1">The free version includes basic score tracking for 2-4 players and limited themes. You get 3 free AI counting uses per game, and you can watch a short video to unlock 3 more whenever you need them — or upgrade to Premium for unlimited AI counting with no ads. You can play unlimited games!</div>
         </details>
 
         <details class="faq-item">
-            <summary>What does Premium include?</summary>
-            <div class="faq-body">Premium unlocks unlimited AI counting, ad-free experience, tournament mode, all themes and animations, game sharing, and custom scoreboard backgrounds (iOS 26+ &amp; Android) on both platforms. On iOS you also get iCloud sync, plus widgets &amp; Live Activity and saved Name Styles on iOS 26 or later — these are coming to Android in a future update. <strong>Live Share &amp; Transfer</strong> hosting is Premium on both iOS 26+ and Android; joining a shared game and using the Game Timer are free for everyone on both platforms. Recurring subscriptions (Monthly, 6-Month, Annual) include a 14-day free trial. Lifetime Access requires immediate one-time payment with no trial.</div>
+            <summary data-i18n="q2">What does Premium include?</summary>
+            <div class="faq-body" data-i18n-html="a2">Premium unlocks unlimited AI counting, ad-free experience, tournament mode, all themes and animations, game sharing, and custom scoreboard backgrounds (iOS 26+ &amp; Android) on both platforms. On iOS you also get iCloud sync, plus widgets &amp; Live Activity and saved Name Styles on iOS 26 or later — these are coming to Android in a future update. <strong>Live Share &amp; Transfer</strong> hosting is Premium on both iOS 26+ and Android; joining a shared game and using the Game Timer are free for everyone on both platforms. Recurring subscriptions (Monthly, 6-Month, Annual) include a 14-day free trial. Lifetime Access requires immediate one-time payment with no trial.</div>
         </details>
 
         <details class="faq-item">
-            <summary>Does the 14-day free trial apply to all Premium options?</summary>
-            <div class="faq-body">No. The 14-day free trial only applies to recurring subscriptions (Monthly, 6-Month, and Annual plans). If you choose Lifetime Access, it's a one-time payment with no trial period, but you get permanent Premium access forever.</div>
+            <summary data-i18n="q3">Does the 14-day free trial apply to all Premium options?</summary>
+            <div class="faq-body" data-i18n-html="a3">No. The 14-day free trial only applies to recurring subscriptions (Monthly, 6-Month, and Annual plans). If you choose Lifetime Access, it's a one-time payment with no trial period, but you get permanent Premium access forever.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How do I add widgets to my home screen? (Premium, iOS 26+ only)</summary>
-            <div class="faq-body">Widgets are currently available on iPhone and iPad running iOS 26 or later. Long-press on your home screen, tap the "+" button in the top left, search for "Magic Domino", and select the widget size you want. You can add widgets to your home screen or lock screen to see your live scores! Widget support for Android is planned for a future update.</div>
+            <summary data-i18n="q4">How do I add widgets to my home screen? (Premium, iOS 26+ only)</summary>
+            <div class="faq-body" data-i18n-html="a4">Widgets are currently available on iPhone and iPad running iOS 26 or later. Long-press on your home screen, tap the "+" button in the top left, search for "Magic Domino", and select the widget size you want. You can add widgets to your home screen or lock screen to see your live scores! Widget support for Android is planned for a future update.</div>
         </details>
 
         <details class="faq-item">
-            <summary>What is Live Activity? (Premium, iOS 26+ only)</summary>
-            <div class="faq-body">Live Activity displays your current game score in real-time on your lock screen and Dynamic Island. When you start a new game with Premium, your live score automatically appears! It updates as you add points during the game.</div>
+            <summary data-i18n="q5">What is Live Activity? (Premium, iOS 26+ only)</summary>
+            <div class="faq-body" data-i18n-html="a5">Live Activity displays your current game score in real-time on your lock screen and Dynamic Island. When you start a new game with Premium, your live score automatically appears! It updates as you add points during the game.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How do I add Quick Points from my Lock Screen or Dynamic Island? (Premium, iOS 26+ only)</summary>
-            <div class="faq-body">With Premium and iOS 26+, when you have an active game, you'll see Live Activity on your Lock Screen and Dynamic Island. Simply tap the Quick Points button to add points without opening the app. You can also undo your last score directly from there!</div>
+            <summary data-i18n="q6">How do I add Quick Points from my Lock Screen or Dynamic Island? (Premium, iOS 26+ only)</summary>
+            <div class="faq-body" data-i18n-html="a6">With Premium and iOS 26+, when you have an active game, you'll see Live Activity on your Lock Screen and Dynamic Island. Simply tap the Quick Points button to add points without opening the app. You can also undo your last score directly from there!</div>
         </details>
 
         <details class="faq-item">
-            <summary>How do I customize my scoreboard background? (Premium, iOS 26+ &amp; Android)</summary>
-            <div class="faq-body">On iPhone and iPad running iOS 26 or later, and on Android, go to Settings → Scoreboard Background → Select Photo. Choose a photo from your library, adjust the opacity and blur to your liking, and save! Your photo is stored locally on your device and never uploaded to our servers.</div>
+            <summary data-i18n="q7">How do I customize my scoreboard background? (Premium, iOS 26+ &amp; Android)</summary>
+            <div class="faq-body" data-i18n-html="a7">On iPhone and iPad running iOS 26 or later, and on Android, go to Settings → Scoreboard Background → Select Photo. Choose a photo from your library, adjust the opacity and blur to your liking, and save! Your photo is stored locally on your device and never uploaded to our servers.</div>
         </details>
 
         <details class="faq-item">
-            <summary>Why can't I see the custom background or widget features?</summary>
-            <div class="faq-body">
+            <summary data-i18n="q8">Why can't I see the custom background or widget features?</summary>
+            <div class="faq-body" data-i18n-html="a8">
                 Both are Premium features, so first make sure you have an active Premium subscription. Beyond that:
                 <ul>
                     <li><strong>Custom Backgrounds</strong> are available on Android and on iPhone or iPad running iOS 26 or later. Make sure your device meets these requirements.</li>
@@ -439,73 +446,73 @@
         </details>
 
         <details class="faq-item">
-            <summary>How do I restore my Premium purchase?</summary>
-            <div class="faq-body">Go to Settings → tap "Upgrade" → On the paywall screen, tap "Restore Purchase" at the top right. On iOS your purchase is tied to your Apple ID; on Android it's tied to your Google account. It will be restored automatically as long as you're signed in to the same account you purchased with.</div>
+            <summary data-i18n="q9">How do I restore my Premium purchase?</summary>
+            <div class="faq-body" data-i18n-html="a9">Go to Settings → tap "Upgrade" → On the paywall screen, tap "Restore Purchase" at the top right. On iOS your purchase is tied to your Apple ID; on Android it's tied to your Google account. It will be restored automatically as long as you're signed in to the same account you purchased with.</div>
         </details>
 
         <details class="faq-item">
-            <summary>Can I sync my games across devices?</summary>
-            <div class="faq-body">On iOS, yes — with a Premium subscription, your game history syncs automatically via iCloud across all your Apple devices. Cross-device sync is not yet available on Android, but it's planned for a future update. On all platforms, your game history is always saved locally on your device.</div>
+            <summary data-i18n="q10">Can I sync my games across devices?</summary>
+            <div class="faq-body" data-i18n-html="a10">On iOS, yes — with a Premium subscription, your game history syncs automatically via iCloud across all your Apple devices. Cross-device sync is not yet available on Android, but it's planned for a future update. On all platforms, your game history is always saved locally on your device.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How do I cancel my subscription?</summary>
-            <div class="faq-body">On iOS, subscriptions are managed through Apple: Settings → [Your Name] → Subscriptions → Magic Domino → Cancel Subscription. On Android, they're managed through Google Play: open Google Play → tap your profile icon → Payments &amp; subscriptions → Subscriptions → Magic Domino → Cancel.</div>
+            <summary data-i18n="q11">How do I cancel my subscription?</summary>
+            <div class="faq-body" data-i18n-html="a11">On iOS, subscriptions are managed through Apple: Settings → [Your Name] → Subscriptions → Magic Domino → Cancel Subscription. On Android, they're managed through Google Play: open Google Play → tap your profile icon → Payments &amp; subscriptions → Subscriptions → Magic Domino → Cancel.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How does Tournament Mode work?</summary>
-            <div class="faq-body">Create a tournament with any number of teams from <strong>2 to 32</strong> — it does not have to be a round number. Pick your format: single elimination (one game decides each match), a best-of-3, 5, or 7 series, or double elimination, where a team has to lose twice before it is out. The app builds the bracket, works out the byes for you when the team count isn't a power of two, and tracks winners through every round until a champion is crowned!</div>
+            <summary data-i18n="q12">How does Tournament Mode work?</summary>
+            <div class="faq-body" data-i18n-html="a12">Create a tournament with any number of teams from <strong>2 to 32</strong> — it does not have to be a round number. Pick your format: single elimination (one game decides each match), a best-of-3, 5, or 7 series, or double elimination, where a team has to lose twice before it is out. The app builds the bracket, works out the byes for you when the team count isn't a power of two, and tracks winners through every round until a champion is crowned!</div>
         </details>
 
         <details class="faq-item">
-            <summary>Can I share my games with friends?</summary>
-            <div class="faq-body">Yes, in three ways. On iOS 26 or later and on Android, tap the share button on the scoreboard: <strong>Share Live</strong> opens a room so others can follow the score on their own phones as you play, <strong>Send a Copy</strong> hands a game or tournament to another device, and <strong>Enter Code</strong> lets you join a game someone else is sharing. You can also share a game result as an image at any time. It works the same on iPhone, iPad, and Android, and you can share between them.</div>
+            <summary data-i18n="q13">Can I share my games with friends?</summary>
+            <div class="faq-body" data-i18n-html="a13">Yes, in three ways. On iOS 26 or later and on Android, tap the share button on the scoreboard: <strong>Share Live</strong> opens a room so others can follow the score on their own phones as you play, <strong>Send a Copy</strong> hands a game or tournament to another device, and <strong>Enter Code</strong> lets you join a game someone else is sharing. You can also share a game result as an image at any time. It works the same on iPhone, iPad, and Android, and you can share between them.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How does Live Share work? (iOS 26+ &amp; Android — hosting needs Premium)</summary>
-            <div class="faq-body">Start a game, tap the share button in the header, and choose <strong>Share Live</strong>. You'll get a short code and a QR code. Hosting a session needs Premium, but the people watching don't need it at all — anyone you give the code to can enter it — or scan the QR from the Counter screen — and watch your scoreboard update in real time on their own phone. No more leaning over to see someone else's screen. Everyone can follow along whether they're sitting at the same table or somewhere else entirely.</div>
+            <summary data-i18n="q14">How does Live Share work? (iOS 26+ &amp; Android — hosting needs Premium)</summary>
+            <div class="faq-body" data-i18n-html="a14">Start a game, tap the share button in the header, and choose <strong>Share Live</strong>. You'll get a short code and a QR code. Hosting a session needs Premium, but the people watching don't need it at all — anyone you give the code to can enter it — or scan the QR from the Counter screen — and watch your scoreboard update in real time on their own phone. No more leaning over to see someone else's screen. Everyone can follow along whether they're sitting at the same table or somewhere else entirely.</div>
         </details>
 
         <details class="faq-item">
-            <summary>Does Live Share need an internet connection?</summary>
-            <div class="faq-body">Not always. If everyone is on the same Wi-Fi network, phones connect to each other directly over that network and nothing goes through the internet at all — handy at a house with patchy service. When someone is somewhere else, the game is relayed through our server so it can reach them. The first time you use Live Share on the same network, iOS asks for Local Network permission and Android asks to find nearby devices. You can decline either one and Live Share will still work through the relay.</div>
+            <summary data-i18n="q15">Does Live Share need an internet connection?</summary>
+            <div class="faq-body" data-i18n-html="a15">Not always. If everyone is on the same Wi-Fi network, phones connect to each other directly over that network and nothing goes through the internet at all — handy at a house with patchy service. When someone is somewhere else, the game is relayed through our server so it can reach them. The first time you use Live Share on the same network, iOS asks for Local Network permission and Android asks to find nearby devices. You can decline either one and Live Share will still work through the relay.</div>
         </details>
 
         <details class="faq-item">
-            <summary>Who can see my game when I share it live?</summary>
-            <div class="faq-body">Only people who have your share code. Treat it like a door key — anyone holding it can watch, so give it out only to people you want following along. Viewers can see the game as it appears on your scoreboard: team names, scores, round history, and the timer if you have it on. They can watch, but they can't change anything. Ending the session closes the room and stops all sharing immediately. Since team names are whatever you type in, use nicknames if you'd rather not share real ones. Full details are in our <a href="privacy.html">Privacy Policy</a>.</div>
+            <summary data-i18n="q16">Who can see my game when I share it live?</summary>
+            <div class="faq-body" data-i18n-html="a16">Only people who have your share code. Treat it like a door key — anyone holding it can watch, so give it out only to people you want following along. Viewers can see the game as it appears on your scoreboard: team names, scores, round history, and the timer if you have it on. They can watch, but they can't change anything. Ending the session closes the room and stops all sharing immediately. Since team names are whatever you type in, use nicknames if you'd rather not share real ones. Full details are in our <a href="privacy.html">Privacy Policy</a>.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How do I show the bracket on a TV? (free, no app needed)</summary>
-            <div class="faq-body">Any screen with a web browser can become the tournament board — a smart TV, a laptop on HDMI, or a spare phone. On that screen, open <strong>magicdominoapp.com</strong>, choose <strong>Watch Live</strong>, and type the 6-character room code from the host's share screen. That's it: no app to install, no account, and nothing for the viewer to pay. The page connects on its own, so the host's phone doesn't have to stay plugged in or even stay in the room — it can go back in a pocket and the board keeps updating. It follows your browser's language automatically and reads right-to-left in Arabic and Urdu. If you reload or the signal drops for a moment, the standings come straight back instead of flashing an empty screen.</div>
+            <summary data-i18n="q17">How do I show the bracket on a TV? (free, no app needed)</summary>
+            <div class="faq-body" data-i18n-html="a17">Any screen with a web browser can become the tournament board — a smart TV, a laptop on HDMI, or a spare phone. On that screen, open <strong>magicdominoapp.com</strong>, choose <strong>Watch Live</strong>, and type the 6-character room code from the host's share screen. That's it: no app to install, no account, and nothing for the viewer to pay. The page connects on its own, so the host's phone doesn't have to stay plugged in or even stay in the room — it can go back in a pocket and the board keeps updating. It follows your browser's language automatically and reads right-to-left in Arabic and Urdu. If you reload or the signal drops for a moment, the standings come straight back instead of flashing an empty screen.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How long does a share code last?</summary>
-            <div class="faq-body">A live room stays open for as long as you keep the session running — close it and the code stops working. A code used to send a copy of a game is single-use: once the other device claims the game, the code is spent, and unclaimed codes expire on their own.</div>
+            <summary data-i18n="q18">How long does a share code last?</summary>
+            <div class="faq-body" data-i18n-html="a18">A live room stays open for as long as you keep the session running — close it and the code stops working. A code used to send a copy of a game is single-use: once the other device claims the game, the code is spent, and unclaimed codes expire on their own.</div>
         </details>
 
         <details class="faq-item">
-            <summary>Why don't I see Live Share, Name Styles, or the Game Timer?</summary>
-            <div class="faq-body"><strong>Live Share</strong> and the <strong>Game Timer</strong> are available on Android and on iPhone or iPad running iOS 26 or later. <strong>Name Styles</strong> is iOS 26+ only for now and is planned for Android in a future update. On iOS 17 or 18 the app works fully, but none of these appear.<br><br>Premium requirements differ: the <strong>Game Timer is free for everyone</strong> (and off by default — turn it on in Settings → Game Timer). <strong>Name Style presets are free</strong>; saving your own custom styles needs Premium. For <strong>Live Share</strong>, hosting a session or sending a copy needs Premium, but joining someone else's game with a code is always free.</div>
+            <summary data-i18n="q19">Why don't I see Live Share, Name Styles, or the Game Timer?</summary>
+            <div class="faq-body" data-i18n-html="a19"><strong>Live Share</strong> and the <strong>Game Timer</strong> are available on Android and on iPhone or iPad running iOS 26 or later. <strong>Name Styles</strong> is iOS 26+ only for now and is planned for Android in a future update. On iOS 17 or 18 the app works fully, but none of these appear.<br><br>Premium requirements differ: the <strong>Game Timer is free for everyone</strong> (and off by default — turn it on in Settings → Game Timer). <strong>Name Style presets are free</strong>; saving your own custom styles needs Premium. For <strong>Live Share</strong>, hosting a session or sending a copy needs Premium, but joining someone else's game with a code is always free.</div>
         </details>
 
         <details class="faq-item">
-            <summary>How do I style team names? (iOS 26+ only — presets free, saving needs Premium)</summary>
-            <div class="faq-body">Touch and hold a team name on the scoreboard to open the Name Style center. Pick one of the built-in presets, or touch and hold a preset to customize it — font, color, effect (glow, shadow, outline, or stacked), effect strength, and uppercase. The built-in presets are free; saving your own custom styles requires Premium. Everything is stored on your device. Name Styles is not yet on Android and is planned for a future update.</div>
+            <summary data-i18n="q20">How do I style team names? (iOS 26+ only — presets free, saving needs Premium)</summary>
+            <div class="faq-body" data-i18n-html="a20">Touch and hold a team name on the scoreboard to open the Name Style center. Pick one of the built-in presets, or touch and hold a preset to customize it — font, color, effect (glow, shadow, outline, or stacked), effect strength, and uppercase. The built-in presets are free; saving your own custom styles requires Premium. Everything is stored on your device. Name Styles is not yet on Android and is planned for a future update.</div>
         </details>
 
         <details class="faq-item">
-            <summary>What does the Game Timer show? (iOS 26+ &amp; Android, free for everyone)</summary>
-            <div class="faq-body">It's off by default; turn it on in Settings → Game Timer. Once on, a clock appears in the header showing how long the game has been going, starting from the first score added. In Tournament mode it also times each match and the tournament as a whole, including breaks between matches. Elapsed time appears on share cards too, so it's included when you share a game result. Timestamps are already saved with your games, so switching the timer on mid-game still shows the true elapsed time.</div>
+            <summary data-i18n="q21">What does the Game Timer show? (iOS 26+ &amp; Android, free for everyone)</summary>
+            <div class="faq-body" data-i18n-html="a21">It's off by default; turn it on in Settings → Game Timer. Once on, a clock appears in the header showing how long the game has been going, starting from the first score added. In Tournament mode it also times each match and the tournament as a whole, including breaks between matches. Elapsed time appears on share cards too, so it's included when you share a game result. Timestamps are already saved with your games, so switching the timer on mid-game still shows the true elapsed time.</div>
         </details>
 
         <details class="faq-item">
-            <summary>The AI isn't counting correctly. What should I do?</summary>
-            <div class="faq-body">
+            <summary data-i18n="q22">The AI isn't counting correctly. What should I do?</summary>
+            <div class="faq-body" data-i18n-html="a22">
                 Make sure your dominoes are:
                 <ul>
                     <li>Well-lit and clearly visible in the camera view</li>
@@ -518,24 +525,24 @@
         </details>
 
         <details class="faq-item">
-            <summary>Is my photo safe when I use a custom background?</summary>
-            <div class="faq-body">Absolutely! When you select a photo for your scoreboard background, it's compressed and stored locally on your device only. Your photos are never uploaded to our servers or shared with anyone. You have complete control and can remove the custom background anytime.</div>
+            <summary data-i18n="q23">Is my photo safe when I use a custom background?</summary>
+            <div class="faq-body" data-i18n-html="a23">Absolutely! When you select a photo for your scoreboard background, it's compressed and stored locally on your device only. Your photos are never uploaded to our servers or shared with anyone. You have complete control and can remove the custom background anytime.</div>
         </details>
 
-        <h2>Feature Requests & Feedback</h2>
-        <p>We love hearing from our users! If you have suggestions for new features or improvements, please email us at <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a></p>
+        <h2 data-i18n="sup.reqTitle">Feature Requests & Feedback</h2>
+        <p><span data-i18n="sup.reqBody">We love hearing from our users! If you have suggestions for new features or improvements, please email us at</span> <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a></p>
 
-        <h2>Report a Bug</h2>
-        <p>Found a bug? Please let us know by emailing <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a> with:</p>
+        <h2 data-i18n="sup.bugTitle">Report a Bug</h2>
+        <p><span data-i18n="sup.bugIntro">Found a bug? Please let us know by emailing</span> <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a> <span data-i18n="sup.bugWith">with:</span></p>
         <ul class="info-list">
-            <li>Description of the issue</li>
-            <li>Steps to reproduce it</li>
-            <li>Your device model and OS version (iOS or Android)</li>
-            <li>Screenshots if possible</li>
+            <li data-i18n="sup.bug1">Description of the issue</li>
+            <li data-i18n="sup.bug2">Steps to reproduce it</li>
+            <li data-i18n="sup.bug3">Your device model and OS version (iOS or Android)</li>
+            <li data-i18n="sup.bug4">Screenshots if possible</li>
         </ul>
 
-        <h2>Response Time</h2>
-        <p>We typically respond to all support requests within 24–48 hours. Thank you for your patience!</p>
+        <h2 data-i18n="sup.rtTitle">Response Time</h2>
+        <p data-i18n="sup.rtBody">We typically respond to all support requests within 24–48 hours. Thank you for your patience!</p>
     </div>
 
     <footer>
