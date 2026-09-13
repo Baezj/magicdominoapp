@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use — Magic Domino™</title>
+    <title data-i18n="terms.pageTitle">Terms of Use — Magic Domino™</title>
     <link rel="icon" type="image/png" href="app-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -276,158 +276,168 @@
             .content { padding: 1rem 1.25rem 3rem; }
             footer { padding: 2.5rem 1.25rem; }
         }
+        /* ===== Right-to-left (Arabic, Urdu) =====
+           i18n.js sets dir="rtl" for ar/ur. One centred column, so only the
+           rules that state a physical side need flipping. */
+        [dir="rtl"] .brand-tm { margin-left: 0; margin-right: 0.05em; }
+        [dir="rtl"] h2 { padding-left: 0; padding-right: 1.25rem; }
+        [dir="rtl"] h2::before { left: auto; right: 0; }
+        [dir="rtl"] ul { padding-left: 0; padding-right: 1.25rem; }
     </style>
+    <script src="/i18n.js"></script>
 </head>
 <body>
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
         </a>
-        <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Menu" data-i18n-attr="aria-label:a11y.menu">☰</button>
         <div class="navbar-links" id="navbarLinks">
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
-            <a href="support.html">Support</a>
+            <a href="index.html" data-i18n="nav.home">Home</a>
+            <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+            <a href="terms.html" data-i18n="nav.terms">Terms</a>
+            <a href="support.html" data-i18n="nav.support">Support</a>
         </div>
     </nav>
 
     <div class="page-hero">
-        <p class="page-eyebrow">Legal</p>
-        <h1>Terms of <em>Use</em></h1>
-        <p class="last-updated">Last updated: September 13, 2026</p>
+        <p class="page-eyebrow" data-i18n="priv.eyebrow">Legal</p>
+        <h1 data-i18n-html="terms.title">Terms of <em>Use</em></h1>
+        <p class="last-updated" data-i18n="terms.updated">Last updated: September 13, 2026</p>
     </div>
 
     <div class="content">
-        <h2>1. Acceptance of Terms</h2>
-        <p>Welcome to Magic Domino! By downloading, installing, or using the Magic Domino™ mobile application, or by using our website and the tournament board you can open in a browser at magicdominoapp.com (together, the "Service"), you agree to be bound by these Terms of Use ("Terms"). These terms help protect both you and us. If you don't agree to these Terms, please don't use the Service.</p>
-        <p>You do not need to install anything or create an account to watch a tournament in a browser — there are no accounts at all. Watching is free, and these Terms apply to you while you do it, including the disclaimer of warranties and the limitation of liability in sections 10 and 11. Where these Terms refer to the "App", they mean the mobile application specifically; where they refer to the "Service", they mean the App and the website together.</p>
+        <p class="legal-emphasis" data-i18n="terms.govern">These Terms may be shown to you in translation for convenience. The English version is the authoritative text and governs in case of any discrepancy.</p>
 
-        <h2>2. License Grant</h2>
-        <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the App for your personal, non-commercial use on devices that you own or control.</p>
+        <h2 data-i18n="terms.s1.h">1. Acceptance of Terms</h2>
+        <p data-i18n="terms.s1.p1">Welcome to Magic Domino! By downloading, installing, or using the Magic Domino™ mobile application, or by using our website and the tournament board you can open in a browser at magicdominoapp.com (together, the "Service"), you agree to be bound by these Terms of Use ("Terms"). These terms help protect both you and us. If you don't agree to these Terms, please don't use the Service.</p>
+        <p data-i18n="terms.s1.p2">You do not need to install anything or create an account to watch a tournament in a browser — there are no accounts at all. Watching is free, and these Terms apply to you while you do it, including the disclaimer of warranties and the limitation of liability in sections 10 and 11. Where these Terms refer to the "App", they mean the mobile application specifically; where they refer to the "Service", they mean the App and the website together.</p>
 
-        <h2>3. Subscription Terms</h2>
-        <h3>3.1 Free Trial</h3>
-        <p>Magic Domino offers a 14-day free trial for new Premium subscribers choosing a recurring subscription (Monthly, 6-Month, or Annual). The free trial does NOT apply to the Lifetime Access purchase, which requires immediate one-time payment. You will not be charged during the trial period for recurring subscriptions. If you do not cancel before the trial ends, you will be automatically charged for your chosen subscription plan.</p>
+        <h2 data-i18n="terms.s2.h">2. License Grant</h2>
+        <p data-i18n="terms.s2.p1">Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the App for your personal, non-commercial use on devices that you own or control.</p>
 
-        <h3>3.2 Auto-Renewal</h3>
-        <p>All subscriptions automatically renew unless auto-renewal is turned off at least 24 hours before the end of the current subscription period. Your App Store account (iOS) or Google Play account (Android) will be charged for renewal within 24 hours prior to the end of the current period.</p>
+        <h2 data-i18n="terms.s3.h">3. Subscription Terms</h2>
+        <h3 data-i18n="terms.s3_1.h">3.1 Free Trial</h3>
+        <p data-i18n="terms.s3_1.p1">Magic Domino offers a 14-day free trial for new Premium subscribers choosing a recurring subscription (Monthly, 6-Month, or Annual). The free trial does NOT apply to the Lifetime Access purchase, which requires immediate one-time payment. You will not be charged during the trial period for recurring subscriptions. If you do not cancel before the trial ends, you will be automatically charged for your chosen subscription plan.</p>
 
-        <h3>3.3 Subscription Plans</h3>
-        <p>Magic Domino offers the following subscription options:</p>
+        <h3 data-i18n="terms.s3_2.h">3.2 Auto-Renewal</h3>
+        <p data-i18n="terms.s3_2.p1">All subscriptions automatically renew unless auto-renewal is turned off at least 24 hours before the end of the current subscription period. Your App Store account (iOS) or Google Play account (Android) will be charged for renewal within 24 hours prior to the end of the current period.</p>
+
+        <h3 data-i18n="terms.s3_3.h">3.3 Subscription Plans</h3>
+        <p data-i18n="terms.s3_3.p1">Magic Domino offers the following subscription options:</p>
         <ul>
-            <li><strong>Monthly Subscription:</strong> Billed monthly</li>
-            <li><strong>6-Month Subscription:</strong> Billed every 6 months</li>
-            <li><strong>Annual Subscription:</strong> Billed annually</li>
-            <li><strong>Lifetime Access:</strong> One-time payment for permanent access</li>
+            <li data-i18n-html="terms.s3_3.li1"><strong>Monthly Subscription:</strong> Billed monthly</li>
+            <li data-i18n-html="terms.s3_3.li2"><strong>6-Month Subscription:</strong> Billed every 6 months</li>
+            <li data-i18n-html="terms.s3_3.li3"><strong>Annual Subscription:</strong> Billed annually</li>
+            <li data-i18n-html="terms.s3_3.li4"><strong>Lifetime Access:</strong> One-time payment for permanent access</li>
         </ul>
 
-        <h3>3.4 Managing Subscriptions</h3>
-        <p>You can manage your subscriptions and turn off auto-renewal by going to your App Store Account Settings (iOS) or your Google Play subscriptions (Android) after purchase. Subscriptions cannot be cancelled during the active subscription period.</p>
+        <h3 data-i18n="terms.s3_4.h">3.4 Managing Subscriptions</h3>
+        <p data-i18n="terms.s3_4.p1">You can manage your subscriptions and turn off auto-renewal by going to your App Store Account Settings (iOS) or your Google Play subscriptions (Android) after purchase. Subscriptions cannot be cancelled during the active subscription period.</p>
 
-        <h3>3.5 Pricing</h3>
-        <p>All prices are in US dollars and may vary by country. Prices are subject to change, but any price changes will not affect existing subscribers until their next renewal.</p>
+        <h3 data-i18n="terms.s3_5.h">3.5 Pricing</h3>
+        <p data-i18n="terms.s3_5.p1">All prices are in US dollars and may vary by country. Prices are subject to change, but any price changes will not affect existing subscribers until their next renewal.</p>
 
-        <h2>4. Refund Policy</h2>
-        <p>All purchases are processed through the Apple App Store (iOS) or Google Play (Android) and are subject to their respective refund policies. We do not directly process refunds. To request a refund on iOS, please contact Apple Support or visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>. To request a refund on Android, please visit <a href="https://play.google.com/store/account" target="_blank" rel="noopener">Google Play</a> or contact Google Play support.</p>
+        <h2 data-i18n="terms.s4.h">4. Refund Policy</h2>
+        <p data-i18n-html="terms.s4.p1">All purchases are processed through the Apple App Store (iOS) or Google Play (Android) and are subject to their respective refund policies. We do not directly process refunds. To request a refund on iOS, please contact Apple Support or visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>. To request a refund on Android, please visit <a href="https://play.google.com/store/account" target="_blank" rel="noopener">Google Play</a> or contact Google Play support.</p>
 
-        <h2>5. Premium Features</h2>
-        <p>Premium subscription includes:</p>
+        <h2 data-i18n="terms.s5.h">5. Premium Features</h2>
+        <p data-i18n="terms.s5.p1">Premium subscription includes:</p>
         <ul>
-            <li>Unlimited AI score counting</li>
-            <li>Ad-free experience</li>
-            <li>Tournament mode with bracket generation</li>
-            <li>All themes and victory animations</li>
-            <li>Game state sharing (see Live Share &amp; Transfer below for the iOS 26+ live features)</li>
-            <li><strong>iOS only:</strong> iCloud sync across devices <em>(coming to Android in a future update)</em></li>
-            <li><strong>iOS 26+ &amp; Android:</strong> Live Share &amp; Transfer — host a live session so others can follow your score on their own phones, or send a copy of a game or tournament to another device. <em>Joining a session or receiving a copy does not require Premium</em></li>
-            <li><strong>iOS 26+ only:</strong> Name Styles — save your own custom team-name styles. The built-in presets are available to all users on iOS 26+ <em>(coming to Android in a future update)</em></li>
-            <li><strong>iOS 26+ only:</strong> Widgets &amp; Live Activity — display live scores on your home screen, lock screen, and Dynamic Island; add Quick Points and undo scores directly from your Lock Screen without opening the app <em>(coming to Android in a future update)</em></li>
-            <li><strong>iOS 26+ &amp; Android:</strong> Custom Scoreboard Background — personalize your scoreboard with photos from your library</li>
+            <li data-i18n="terms.s5.li1">Unlimited AI score counting</li>
+            <li data-i18n="terms.s5.li2">Ad-free experience</li>
+            <li data-i18n="terms.s5.li3">Tournament mode with bracket generation</li>
+            <li data-i18n="terms.s5.li4">All themes and victory animations</li>
+            <li data-i18n="terms.s5.li5">Game state sharing (see Live Share &amp; Transfer below for the iOS 26+ live features)</li>
+            <li data-i18n-html="terms.s5.li6"><strong>iOS only:</strong> iCloud sync across devices <em>(coming to Android in a future update)</em></li>
+            <li data-i18n-html="terms.s5.li7"><strong>iOS 26+ &amp; Android:</strong> Live Share &amp; Transfer — host a live session so others can follow your score on their own phones, or send a copy of a game or tournament to another device. <em>Joining a session or receiving a copy does not require Premium</em></li>
+            <li data-i18n-html="terms.s5.li8"><strong>iOS 26+ only:</strong> Name Styles — save your own custom team-name styles. The built-in presets are available to all users on iOS 26+ <em>(coming to Android in a future update)</em></li>
+            <li data-i18n-html="terms.s5.li9"><strong>iOS 26+ only:</strong> Widgets &amp; Live Activity — display live scores on your home screen, lock screen, and Dynamic Island; add Quick Points and undo scores directly from your Lock Screen without opening the app <em>(coming to Android in a future update)</em></li>
+            <li data-i18n-html="terms.s5.li10"><strong>iOS 26+ &amp; Android:</strong> Custom Scoreboard Background — personalize your scoreboard with photos from your library</li>
         </ul>
-        <p>Free version users receive 3 AI counting uses per game and can watch a rewarded video advertisement to unlock additional uses. Free users also have access to basic features with advertisements. Premium provides unlimited AI counting with no ads.</p>
+        <p data-i18n="terms.s5.p2">Free version users receive 3 AI counting uses per game and can watch a rewarded video advertisement to unlock additional uses. Free users also have access to basic features with advertisements. Premium provides unlimited AI counting with no ads.</p>
 
-        <h2>6. User Obligations</h2>
-        <p>You agree to:</p>
+        <h2 data-i18n="terms.s6.h">6. User Obligations</h2>
+        <p data-i18n="terms.s6.p1">You agree to:</p>
         <ul>
-            <li>Use the App only for lawful purposes</li>
-            <li>Not attempt to reverse engineer, decompile, or disassemble the App</li>
-            <li>Not use the App in any way that could damage, disable, or impair the App</li>
-            <li>Comply with all applicable laws and regulations</li>
-        </ul>
-
-        <h2>7. Device Permissions</h2>
-        <p><strong>Available at no cost to all users on iOS 26 or later and on Android:</strong> the Game Timer (an optional running clock for games, tournament matches, and tournament totals, which also appears on share cards), joining a Live Share session with a code, and receiving a transferred game.</p>
-
-        <h3>7.1 Camera Access</h3>
-        <p>The App's AI counting feature requires camera access. All image processing happens locally on your device in real-time. Photos are never saved, stored, or uploaded to our servers. By using the AI counting feature, you grant the App permission to access your device camera solely for this purpose.</p>
-
-        <h3>7.2 Local Network &amp; Nearby Devices Access (iOS 26+ &amp; Android)</h3>
-        <p>Live Share uses your local network to find and connect to nearby devices, which is why iOS asks for Local Network permission the first time you use it, and Android asks for the equivalent nearby-devices permission. This access is used solely to discover and connect to devices you are actively sharing a game with. If you decline, Live Share still works by relaying through our server instead.</p>
-        <p>By starting a Live Share or Transfer session, you acknowledge that the contents of that game — including team names you have entered — will be transmitted to the devices you share with, and that anyone holding your share code can view the game. You are responsible for who you give a share code to. If you do not want real names transmitted, use nicknames. See our <a href="privacy.html">Privacy Policy</a> for full details on what is sent and how long it is held.</p>
-
-        <h3>7.3 Photo Library Access (Premium, iOS 26+ &amp; Android)</h3>
-        <p>On iPhone and iPad running iOS 26 or later, and on Android, Premium subscribers can customize their scoreboard background with photos from their device. When you select a photo:</p>
-        <ul>
-            <li>The photo is compressed and stored locally on your device</li>
-            <li>Photos are never uploaded to our servers</li>
-            <li>You can remove the custom background at any time</li>
-            <li>Only you have access to the photo you select</li>
-        </ul>
-        <p>By using the custom background feature, you grant the App permission to access selected photos from your library solely for this purpose.</p>
-
-        <h2>8. Data and Privacy</h2>
-        <p>Your use of the App is also governed by our <a href="privacy.html">Privacy Policy</a>. Please review our Privacy Policy to understand how we handle your data.</p>
-
-        <h2>9. Intellectual Property</h2>
-        <p>The App, including all content, features, and functionality, is owned by Magic Domino and is protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. The Magic Domino™ name and logo are trademarks of Magic Domino.</p>
-
-        <h2>10. Disclaimer of Warranties</h2>
-        <p>We work hard to make Magic Domino reliable and bug-free, but like all software, we can't guarantee perfection. Here's the legal language we're required to include:</p>
-        <p class="legal-emphasis"><strong>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</strong></p>
-
-        <h2>11. Limitation of Liability</h2>
-        <p>We strive to provide a great experience, but we need to protect ourselves legally. Here's the standard liability limitation:</p>
-        <p class="legal-emphasis"><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL MAGIC DOMINO BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM:</strong></p>
-        <ul>
-            <li>Your use or inability to use the App</li>
-            <li>Any unauthorized access to or use of our servers</li>
-            <li>Any bugs, viruses, or other harmful code</li>
-            <li>Any errors or omissions in any content</li>
+            <li data-i18n="terms.s6.li1">Use the App only for lawful purposes</li>
+            <li data-i18n="terms.s6.li2">Not attempt to reverse engineer, decompile, or disassemble the App</li>
+            <li data-i18n="terms.s6.li3">Not use the App in any way that could damage, disable, or impair the App</li>
+            <li data-i18n="terms.s6.li4">Comply with all applicable laws and regulations</li>
         </ul>
 
-        <h2>12. Modifications to the App</h2>
-        <p>We're constantly working to improve Magic Domino with new features and updates. We reserve the right to modify, update, or discontinue features of the App at any time. While we strive to keep the App running smoothly, we cannot be held liable for any changes or service interruptions.</p>
+        <h2 data-i18n="terms.s7.h">7. Device Permissions</h2>
+        <p data-i18n-html="terms.s7.p1"><strong>Available at no cost to all users on iOS 26 or later and on Android:</strong> the Game Timer (an optional running clock for games, tournament matches, and tournament totals, which also appears on share cards), joining a Live Share session with a code, and receiving a transferred game.</p>
 
-        <h2>13. Termination</h2>
-        <p>If you violate these Terms, we may stop providing updates, support, or access to Premium features. Since you download the App through the Apple App Store (iOS) or Google Play (Android), the respective platform controls installation and removal — we don't have the ability to remotely disable the App on your device. However, we reserve the right to discontinue service or support if these Terms are violated.</p>
+        <h3 data-i18n="terms.s7_1.h">7.1 Camera Access</h3>
+        <p data-i18n="terms.s7_1.p1">The App's AI counting feature requires camera access. All image processing happens locally on your device in real-time. Photos are never saved, stored, or uploaded to our servers. By using the AI counting feature, you grant the App permission to access your device camera solely for this purpose.</p>
 
-        <h2>14. Third-Party Services</h2>
-        <p>The App integrates with third-party services including:</p>
+        <h3 data-i18n="terms.s7_2.h">7.2 Local Network &amp; Nearby Devices Access (iOS 26+ &amp; Android)</h3>
+        <p data-i18n="terms.s7_2.p1">Live Share uses your local network to find and connect to nearby devices, which is why iOS asks for Local Network permission the first time you use it, and Android asks for the equivalent nearby-devices permission. This access is used solely to discover and connect to devices you are actively sharing a game with. If you decline, Live Share still works by relaying through our server instead.</p>
+        <p data-i18n-html="terms.s7_2.p2">By starting a Live Share or Transfer session, you acknowledge that the contents of that game — including team names you have entered — will be transmitted to the devices you share with, and that anyone holding your share code can view the game. You are responsible for who you give a share code to. If you do not want real names transmitted, use nicknames. See our <a href="privacy.html">Privacy Policy</a> for full details on what is sent and how long it is held.</p>
+
+        <h3 data-i18n="terms.s7_3.h">7.3 Photo Library Access (Premium, iOS 26+ &amp; Android)</h3>
+        <p data-i18n="terms.s7_3.p1">On iPhone and iPad running iOS 26 or later, and on Android, Premium subscribers can customize their scoreboard background with photos from their device. When you select a photo:</p>
         <ul>
-            <li><strong>Apple App Store (iOS):</strong> All purchases on iPhone and iPad are processed by Apple</li>
-            <li><strong>Google Play (Android):</strong> All purchases on Android are processed by Google</li>
-            <li><strong>iCloud (iOS):</strong> Optional sync feature for Premium users on iPhone and iPad</li>
-            <li><strong>Google AdMob:</strong> Primary advertising network for free users. For more information, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a></li>
-            <li><strong>Unity Ads:</strong> Secondary advertising network served through AdMob mediation for free users. For more information, see <a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity's Privacy Policy</a></li>
+            <li data-i18n="terms.s7_3.li1">The photo is compressed and stored locally on your device</li>
+            <li data-i18n="terms.s7_3.li2">Photos are never uploaded to our servers</li>
+            <li data-i18n="terms.s7_3.li3">You can remove the custom background at any time</li>
+            <li data-i18n="terms.s7_3.li4">Only you have access to the photo you select</li>
         </ul>
-        <p>Your use of these third-party services is governed by their respective terms and conditions.</p>
+        <p data-i18n="terms.s7_3.p2">By using the custom background feature, you grant the App permission to access selected photos from your library solely for this purpose.</p>
 
-        <h2>15. Governing Law</h2>
-        <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of law provisions. Any disputes arising from these Terms or the App shall be resolved in the courts of the United States.</p>
+        <h2 data-i18n="terms.s8.h">8. Data and Privacy</h2>
+        <p data-i18n-html="terms.s8.p1">Your use of the App is also governed by our <a href="privacy.html">Privacy Policy</a>. Please review our Privacy Policy to understand how we handle your data.</p>
 
-        <h2>16. Changes to Terms</h2>
-        <p>We may update these Terms from time to time to reflect changes in our App or legal requirements. If we make significant changes, we'll update the date at the top and notify you through the App or other appropriate means. Your continued use of the App after changes means you accept the updated Terms.</p>
+        <h2 data-i18n="terms.s9.h">9. Intellectual Property</h2>
+        <p data-i18n="terms.s9.p1">The App, including all content, features, and functionality, is owned by Magic Domino and is protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. The Magic Domino™ name and logo are trademarks of Magic Domino.</p>
 
-        <h2>17. Contact Information</h2>
-        <p>If you have any questions about these Terms, please contact us at:<br>
+        <h2 data-i18n="terms.s10.h">10. Disclaimer of Warranties</h2>
+        <p data-i18n="terms.s10.p1">We work hard to make Magic Domino reliable and bug-free, but like all software, we can't guarantee perfection. Here's the legal language we're required to include:</p>
+        <p class="legal-emphasis" data-i18n-html="terms.s10.legal"><strong>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</strong></p>
+
+        <h2 data-i18n="terms.s11.h">11. Limitation of Liability</h2>
+        <p data-i18n="terms.s11.p1">We strive to provide a great experience, but we need to protect ourselves legally. Here's the standard liability limitation:</p>
+        <p class="legal-emphasis" data-i18n-html="terms.s11.legal"><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL MAGIC DOMINO BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM:</strong></p>
+        <ul>
+            <li data-i18n="terms.s11.li1">Your use or inability to use the App</li>
+            <li data-i18n="terms.s11.li2">Any unauthorized access to or use of our servers</li>
+            <li data-i18n="terms.s11.li3">Any bugs, viruses, or other harmful code</li>
+            <li data-i18n="terms.s11.li4">Any errors or omissions in any content</li>
+        </ul>
+
+        <h2 data-i18n="terms.s12.h">12. Modifications to the App</h2>
+        <p data-i18n="terms.s12.p1">We're constantly working to improve Magic Domino with new features and updates. We reserve the right to modify, update, or discontinue features of the App at any time. While we strive to keep the App running smoothly, we cannot be held liable for any changes or service interruptions.</p>
+
+        <h2 data-i18n="terms.s13.h">13. Termination</h2>
+        <p data-i18n="terms.s13.p1">If you violate these Terms, we may stop providing updates, support, or access to Premium features. Since you download the App through the Apple App Store (iOS) or Google Play (Android), the respective platform controls installation and removal — we don't have the ability to remotely disable the App on your device. However, we reserve the right to discontinue service or support if these Terms are violated.</p>
+
+        <h2 data-i18n="terms.s14.h">14. Third-Party Services</h2>
+        <p data-i18n="terms.s14.p1">The App integrates with third-party services including:</p>
+        <ul>
+            <li data-i18n-html="terms.s14.li1"><strong>Apple App Store (iOS):</strong> All purchases on iPhone and iPad are processed by Apple</li>
+            <li data-i18n-html="terms.s14.li2"><strong>Google Play (Android):</strong> All purchases on Android are processed by Google</li>
+            <li data-i18n-html="terms.s14.li3"><strong>iCloud (iOS):</strong> Optional sync feature for Premium users on iPhone and iPad</li>
+            <li data-i18n-html="terms.s14.li4"><strong>Google AdMob:</strong> Primary advertising network for free users. For more information, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a></li>
+            <li data-i18n-html="terms.s14.li5"><strong>Unity Ads:</strong> Secondary advertising network served through AdMob mediation for free users. For more information, see <a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity's Privacy Policy</a></li>
+        </ul>
+        <p data-i18n="terms.s14.p2">Your use of these third-party services is governed by their respective terms and conditions.</p>
+
+        <h2 data-i18n="terms.s15.h">15. Governing Law</h2>
+        <p data-i18n="terms.s15.p1">These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of law provisions. Any disputes arising from these Terms or the App shall be resolved in the courts of the United States.</p>
+
+        <h2 data-i18n="terms.s16.h">16. Changes to Terms</h2>
+        <p data-i18n="terms.s16.p1">We may update these Terms from time to time to reflect changes in our App or legal requirements. If we make significant changes, we'll update the date at the top and notify you through the App or other appropriate means. Your continued use of the App after changes means you accept the updated Terms.</p>
+
+        <h2 data-i18n="terms.s17.h">17. Contact Information</h2>
+        <p><span data-i18n="terms.s17.p1">If you have any questions about these Terms, please contact us at:</span><br>
         <a href="mailto:magicdominoapp@gmail.com">magicdominoapp@gmail.com</a></p>
 
-        <h2>18. Severability</h2>
-        <p>If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+        <h2 data-i18n="terms.s18.h">18. Severability</h2>
+        <p data-i18n="terms.s18.p1">If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
 
-        <h2>19. Entire Agreement</h2>
-        <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Magic Domino regarding the App and supersede all prior agreements and understandings.</p>
+        <h2 data-i18n="terms.s19.h">19. Entire Agreement</h2>
+        <p data-i18n="terms.s19.p1">These Terms, together with our Privacy Policy, constitute the entire agreement between you and Magic Domino regarding the App and supersede all prior agreements and understandings.</p>
     </div>
 
     <footer>
@@ -435,12 +445,12 @@
             <img src="app-icon.png" alt="" class="brand-icon"><span class="brand-name">Magic Domino<span class="brand-tm">™</span></span>
         </a>
         <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <a href="support.html">Support</a>
+            <a href="index.html" data-i18n="nav.home">Home</a>
+            <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="footer.terms">Terms of Use</a>
+            <a href="support.html" data-i18n="nav.support">Support</a>
         </div>
-        <p class="copyright">© 2026 Magic Domino™. All rights reserved.</p>
+        <p class="copyright" data-i18n="footer.rights">© 2026 Magic Domino™. All rights reserved.</p>
     </footer>
 
     <script>
