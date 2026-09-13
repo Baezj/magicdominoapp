@@ -217,6 +217,7 @@
         .store-badge img { height: 44px; }
     }
 </style>
+    <script src="/i18n.js"></script>
 </head>
 <body>
 <div class="dot-bg"></div>
@@ -226,7 +227,7 @@
     <div id="shared">
         <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
 
-        <h1>You've been invited</h1>
+        <h1 data-i18n="inv.title">You've been invited</h1>
 
         <!-- ⚠️ FILLED IN BY SCRIPT AFTER ASKING WHAT THE CODE ACTUALLY IS.
              The same codes cover a LIVE room and a TRANSFERRED game, and this page
@@ -236,10 +237,10 @@
 
              Starts with wording true of BOTH, so the page reads correctly even if
              the lookup is slow, blocked, or fails entirely. -->
-        <p class="tagline" id="tagline">Someone shared a game with you</p>
+        <p class="tagline" id="tagline" data-i18n="inv.sub">Someone shared a game with you</p>
 
         <!-- They may never have heard of the app. One line, plain language. -->
-        <p class="what" id="what">
+        <p class="what" id="what" data-i18n="inv.what">
             Magic Domino keeps score for dominoes. Get the free app to open this
             on your own phone.
         </p>
@@ -254,22 +255,22 @@
                 <img class="badge-es" src="/badge_google_play_es.svg" alt="Disponible en Google Play">
             </a>
         </div>
-        <p class="free">Free. No account needed to watch.</p>
+        <p class="free" data-i18n="inv.free">Free. No account needed to watch.</p>
 
         <div class="code-card">
-            <div class="code-label">Save this code — you'll need it after installing</div>
+            <div class="code-label" data-i18n="inv.saveCode">Save this code — you'll need it after installing</div>
             <div class="code" id="code"></div>
-            <button class="copy-btn" id="copy" type="button">Copy code</button>
+            <button class="copy-btn" id="copy" type="button" data-i18n="inv.copy">Copy code</button>
         </div>
 
-        <p class="hint">In the app, tap <strong>Share</strong> → <strong>Enter code</strong>.</p>
+        <p class="hint" data-i18n-html="inv.hint">In the app, tap <strong>Share live</strong> → <strong>Enter code</strong>.</p>
     </div>
 
     <div id="missing">
         <img class="app-icon" src="/app-icon.png" alt="Magic Domino">
-        <h1>Page not found</h1>
-        <p class="tagline">That page doesn't exist.</p>
-        <p class="hint"><a class="plain" href="/">Go to Magic Domino</a></p>
+        <h1 data-i18n="err.title">Page not found</h1>
+        <p class="tagline" data-i18n="err.sub">That page doesn't exist.</p>
+        <p class="hint"><a class="plain" href="/" data-i18n="err.cta">Go to Magic Domino</a></p>
     </div>
 
 </div>
@@ -295,13 +296,13 @@
             var btn = document.getElementById("copy");
             btn.addEventListener("click", function () {
                 navigator.clipboard.writeText(last).then(function () {
-                    btn.textContent = "Copied";
-                    setTimeout(function () { btn.textContent = "Copy code"; }, 1800);
+                    btn.textContent = T("inv.copied", "Copied");
+                    setTimeout(function () { btn.textContent = T("inv.copy", "Copy code"); }, 1800);
                 }).catch(function () {
                     // Older browsers, or a page not served over HTTPS. The code is
                     // on screen either way, so this fails quietly rather than
                     // claiming something happened that didn't.
-                    btn.textContent = "Copy failed";
+                    btn.textContent = T("inv.copyFail", "Copy failed");
                     setTimeout(function () { btn.textContent = "Copy code"; }, 1800);
                 });
             });
@@ -309,10 +310,21 @@
             document.getElementById("missing").style.display = "block";
         }
 
-        // Matches the homepage's Spanish badge swap.
-        if ((navigator.language || "").toLowerCase().indexOf("es") === 0) {
-            document.documentElement.lang = "es";
+        // ⚠️ THE SCRIPT WRITES COPY, SO IT NEEDS THE TABLE TOO. This page replaces
+        //    its own tagline once the relay says what the code is; without this the
+        //    lookup would overwrite a localized line with English a moment later.
+        //    Falls back to the English argument if i18n.js failed to load, which is
+        //    the same silent-degradation rule describeCode() already follows.
+        function T(key, fallback) {
+            try {
+                var v = window.MDI18N && window.MDI18N.t(key, window.MDI18N.pick());
+                return v || fallback;
+            } catch (e) { return fallback; }
         }
+
+        // documentElement.lang is set by i18n.js for every language now, which is
+        // what drives the :lang(es) store-badge rules. The Spanish-only sniffer that
+        // used to be here was a subset of that.
 
         /// Asks the relay what this code is, and says so.
         ///
@@ -331,18 +343,16 @@
 
                     if (info.kind === "live") {
                         tagline.textContent = info.mode === "tournament"
-                            ? "Follow the tournament live"
-                            : "Follow the game live";
+                            ? T("inv.liveTournament", "Follow the tournament live")
+                            : T("inv.liveGame", "Follow the game live");
                         what.textContent =
-                            "Magic Domino keeps score for dominoes. Get the free app to "
-                            + "watch from your own phone.";
+                            T("inv.whatWatch", "Magic Domino keeps score for dominoes. Get the free app to watch from your own phone.");
                     } else if (info.kind === "transfer") {
                         tagline.textContent = info.mode === "tournament"
-                            ? "A tournament is waiting for you"
-                            : "A game is waiting for you";
+                            ? T("inv.waitTournament", "A tournament is waiting for you")
+                            : T("inv.waitGame", "A game is waiting for you");
                         what.textContent =
-                            "Magic Domino keeps score for dominoes. Get the free app to "
-                            + "open it on your own phone.";
+                            T("inv.what", "Magic Domino keeps score for dominoes. Get the free app to open it on your own phone.");
                     }
                 })
                 .catch(function () { /* keep the neutral wording */ });
