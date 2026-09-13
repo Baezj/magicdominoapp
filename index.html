@@ -472,9 +472,9 @@
         }
 
         /* English default, Spanish for es locales */
-        .store-badge img.badge-es { display: none; }
-        :lang(es) .store-badge img.badge-en { display: none; }
-        :lang(es) .store-badge img.badge-es { display: block; }
+        /* Badge localization moved to i18n.js: apply() swaps img[data-badge] src
+           per language, from the stores' own localized artwork, falling back to
+           English where a store publishes none (Apple has no ar/hi/bn/ur badge). */
 
         .hero-meta {
             font-size: 0.82rem;
@@ -1106,13 +1106,11 @@
 
             <div class="download-buttons">
                 <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="store-badge" aria-label="Download on the App Store">
-                    <img class="badge-en" src="badge_app_store_en.svg" alt="Download on the App Store">
-                    <img class="badge-es" src="badge_app_store_es.svg" alt="Descárgalo en el App Store">
+                    <img data-badge="apple" src="badge_app_store_en.svg" alt="Download on the App Store">
                 </a>
 
                 <a href="https://play.google.com/store/apps/details?id=com.magicdomino.android" class="store-badge" aria-label="Get it on Google Play">
-                    <img class="badge-en" src="badge_google_play_en.svg" alt="Get it on Google Play">
-                    <img class="badge-es" src="badge_google_play_es.svg" alt="Disponible en Google Play">
+                    <img data-badge="google" src="badge_google_play_en.svg" alt="Get it on Google Play">
                 </a>
             </div>
 
@@ -1282,12 +1280,10 @@
         </a>
         <div class="footer-badges">
             <a href="https://apps.apple.com/us/app/magic-domino-ai-scorekeeper/id6747228055" class="store-badge" aria-label="Download on the App Store">
-                <img class="badge-en" src="badge_app_store_en.svg" alt="Download on the App Store">
-                <img class="badge-es" src="badge_app_store_es.svg" alt="Descárgalo en el App Store">
+                <img data-badge="apple" src="badge_app_store_en.svg" alt="Download on the App Store">
             </a>
             <a href="https://play.google.com/store/apps/details?id=com.magicdomino.android" class="store-badge" aria-label="Get it on Google Play">
-                <img class="badge-en" src="badge_google_play_en.svg" alt="Get it on Google Play">
-                <img class="badge-es" src="badge_google_play_es.svg" alt="Disponible en Google Play">
+                <img data-badge="google" src="badge_google_play_en.svg" alt="Get it on Google Play">
             </a>
         </div>
         <div class="footer-links">

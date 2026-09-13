@@ -424,6 +424,14 @@
   // wrong language must find their own spelled the way they read it.
   var NAMES = { en:"English", es:"Español", fr:"Français", pt:"Português", ar:"العربية", zh:"中文", nl:"Nederlands", de:"Deutsch", hi:"हिन्दी", bn:"বাংলা", id:"Bahasa Indonesia", ur:"اردو", tr:"Türkçe", it:"Italiano", ja:"日本語", ko:"한국어", ru:"Русский" };
 
+  // Official store badges, localized where the stores publish them. The en/es
+  // files predate this map (SVW-era downloads, SVG); everything newer is the
+  // stores' PNG/SVG artwork fetched from their own badge services. Apple ships
+  // no Arabic/Hindi/Bengali/Urdu badge — their own API falls back to English,
+  // so we do the same. Alt text stays English on purpose: it names the artwork.
+  var APPLE_BADGE  = { en:"en.svg", es:"es.svg", fr:"fr.svg", pt:"pt.svg", zh:"zh.svg", nl:"nl.svg", de:"de.svg", id:"id.svg", tr:"tr.svg", it:"it.svg", ja:"ja.svg", ko:"ko.svg", ru:"ru.svg" };
+  var GOOGLE_BADGE = { en:"en.svg", es:"es.svg", fr:"fr.png", pt:"pt.png", ar:"ar.png", zh:"zh.png", nl:"nl.png", de:"de.png", hi:"hi.png", bn:"bn.png", id:"id.png", ur:"ur.png", tr:"tr.png", it:"it.png", ja:"ja.png", ko:"ko.png", ru:"ru.png" };
+
   function storedLang() {
     // try/catch: localStorage can throw in private modes, and doesn't exist in
     // the test harness.
@@ -502,6 +510,14 @@
         sel.removeAttribute("hidden");
       }
       sel.value = lang;
+    }
+
+    // Store badges: the stores' own localized artwork, English fallback.
+    els = document.querySelectorAll("img[data-badge]");
+    for (i = 0; i < els.length; i++) {
+      var apple = els[i].getAttribute("data-badge") === "apple";
+      var bmap = apple ? APPLE_BADGE : GOOGLE_BADGE;
+      els[i].setAttribute("src", (apple ? "badge_app_store_" : "badge_google_play_") + (bmap[lang] || bmap.en));
     }
 
     // "aria-label:a11y.menu" or "placeholder:x.y,title:x.z"
