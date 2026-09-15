@@ -448,10 +448,24 @@
 
   function pick() {
     // Priority: ?lang= in the URL (ephemeral, never saved — for TV links and
-    // support replies), then the switcher's saved choice, then the device.
-    var l = urlLang() || storedLang() || (navigator.language || "en").slice(0, 2).toLowerCase();
-    // Every key must exist in `en`, so en is the guaranteed fallback per-string.
-    return S["nav.home"][l] ? l : "en";
+    // support replies), then the switcher's saved choice, then the device's
+    // OWN preference list (navigator.languages is ordered by the reader —
+    // a ca-ES device with es second gets Spanish, not English), then en.
+    // Every candidate is VALIDATED before it wins: a stale saved value or an
+    // unsupported first language falls through to the next candidate instead
+    // of short-circuiting the whole chain to English.
+    var cands = [urlLang(), storedLang()];
+    try {
+      var nav = (navigator.languages && navigator.languages.length)
+        ? navigator.languages : [navigator.language];
+      for (var i = 0; i < nav.length; i++) {
+        cands.push(String(nav[i] || "").slice(0, 2).toLowerCase());
+      }
+    } catch (e) {}
+    for (var j = 0; j < cands.length; j++) {
+      if (cands[j] && S["nav.home"][cands[j]]) return cands[j];
+    }
+    return "en";
   }
 
   function setLang(l) {
